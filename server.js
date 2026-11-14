@@ -1,6 +1,7 @@
 import express from 'express';
 import { createServer } from 'node:http';
 import { randomInt, randomUUID } from 'node:crypto';
+import { readFile } from 'node:fs/promises';
 import { Server } from 'socket.io';
 import { buildClues } from './src/game.js';
 
@@ -123,12 +124,6 @@ function startTurn(room, playerId) {
   room.turnTimer.unref?.();
 }
 
-function splitValues(value) {
-  return typeof value === 'string'
-    ? value.split(/\s*\/\s*|\s*,\s*/).map((part) => part.trim()).filter(Boolean)
-    : [];
-}
-
 async function getChampionDetails(championId) {
   if (universeDetailsById.has(championId)) return universeDetailsById.get(championId);
   const champion = championById.get(championId);
@@ -137,30 +132,38 @@ async function getChampionDetails(championId) {
 
   const slug = champion.id === 'MonkeyKing' ? 'monkeyking' : champion.id.toLowerCase();
   const pendingDetails = (async () => {
-    const response = await fetch(
-      `https://universe-meeps.leagueoflegends.com/v1/en_us/champions/${slug}/index.json`,
-      { signal: AbortSignal.timeout(10000) },
-    );
-    if (!response.ok) throw new Error(`Riot Universe trả về HTTP ${response.status}`);
-    const data = await response.json();
-    if (data.champion?.name !== champion.name) {
-      throw new Error(`Không khớp dữ liệu thế giới cho ${champion.name}.`);
+    try {
+      const response = await fetch(
+        `https://universe-meeps.leagueoflegends.com/v1/en_us/champions/${slug}/index.json`,
+        { signal: AbortSignal.timeout(4000) },
+      );
+      if (!response.ok) throw new Error(`Riot Universe trả về HTTP ${response.status}`);
+      const data = await response.json();
+      if (data.champion?.name !== champion.name) {
+        throw new Error(`Không khớp dữ liệu thế giới cho ${champion.name}.`);
+      }
+
+      const species = Array.isArray(data.champion.races)
+        ? data.champion.races.map((race) => race.name).filter(Boolean)
+        : [];
+      return {
+        ...metadata,
+        species: species.length ? species : ['Human'],
+      };
+    } catch (error) {
+      console.warn(`Chưa tải được chủng loài của ${champion.name}; manh mối này sẽ hiện là chưa rõ:`, error);
+      return {
+        ...metadata,
+        species: [],
+      };
     }
-
-    const species = Array.isArray(data.champion.races)
-      ? data.champion.races.map((race) => race.name).filter(Boolean)
-      : [];
-
-    return {
-      ...metadata,
-      species: species.length ? species : ['Human'],
-    };
   })();
 
   universeDetailsById.set(championId, pendingDetails);
   try {
     const details = await pendingDetails;
-    universeDetailsById.set(championId, details);
+    if (details.species.length) universeDetailsById.set(championId, details);
+    else universeDetailsById.delete(championId);
     return details;
   } catch (error) {
     universeDetailsById.delete(championId);
@@ -355,48 +358,23 @@ io.on('connection', (socket) => {
 });
 
 async function loadChampions() {
-  const timeout = AbortSignal.timeout(12000);
-  const versionsResponse = await fetch('https://ddragon.leagueoflegends.com/api/versions.json', {
-    signal: timeout,
-  });
-  if (!versionsResponse.ok) throw new Error(`Data Dragon trả về HTTP ${versionsResponse.status}`);
-  const versions = await versionsResponse.json();
-  dataDragonVersion = versions[0];
-  if (!dataDragonVersion) throw new Error('Không lấy được phiên bản tướng từ Data Dragon.');
+  const catalogue = JSON.parse(await readFile(new URL('./data/champions.json', import.meta.url), 'utf8'));
+  if (!catalogue.version || !Array.isArray(catalogue.champions) || catalogue.champions.length < 150) {
+    throw new Error('Tệp data/champions.json thiếu hoặc không đầy đủ.');
+  }
 
-  const championsResponse = await fetch(
-    `https://ddragon.leagueoflegends.com/cdn/${dataDragonVersion}/data/en_US/champion.json`,
-    { signal: AbortSignal.timeout(12000) },
-  );
-  if (!championsResponse.ok) throw new Error(`Data Dragon trả về HTTP ${championsResponse.status}`);
-  const data = await championsResponse.json();
-  champions = Object.values(data.data);
+  dataDragonVersion = catalogue.version;
+  champions = catalogue.champions.map((entry) => ({
+    id: entry.id,
+    name: entry.name,
+    title: entry.title,
+    tags: entry.tags,
+    image: { full: entry.imageFile },
+  }));
   championById = new Map(champions.map((champion) => [champion.id, champion]));
-
-  const metadataResponse = await fetch('https://who-is-that-champion-data-api.vercel.app/api', {
-    signal: AbortSignal.timeout(12000),
-  });
-  if (!metadataResponse.ok) throw new Error(`Dữ liệu manh mối trả về HTTP ${metadataResponse.status}`);
-  const metadataPayload = await metadataResponse.json();
-  const metadataRows = metadataPayload.champions_data?.en_us;
-  if (!Array.isArray(metadataRows)) throw new Error('Không có danh sách thuộc tính tướng bằng tiếng Anh.');
-
-  const metadataByKey = new Map(metadataRows.map((row) => [row.key, row]));
-  championMetadataById = new Map();
-  for (const champion of champions) {
-    const row = metadataByKey.get(champion.id);
-    if (!row) throw new Error(`Thiếu manh mối cho ${champion.name}.`);
-    const releaseYear = Number(row.release_year);
-    if (!Number.isInteger(releaseYear)) throw new Error(`Năm ra mắt của ${champion.name} không hợp lệ.`);
-
-    championMetadataById.set(champion.id, {
-      gender: row.gender,
-      positions: splitValues(row.lane),
-      resource: row.resource || champion.partype || 'Manaless',
-      rangeType: row.range_type,
-      regions: splitValues(row.region),
-      releaseYear,
-    });
+  championMetadataById = new Map(catalogue.champions.map((entry) => [entry.id, entry.metadata]));
+  if (championById.size !== champions.length || championMetadataById.size !== champions.length) {
+    throw new Error('Tệp dữ liệu tướng có mã trùng lặp hoặc thiếu manh mối.');
   }
 }
 
@@ -407,6 +385,6 @@ try {
     console.log(`Rift Riddle is ready at http://localhost:${port} (Data Dragon ${dataDragonVersion})`);
   });
 } catch (error) {
-  console.error('Không thể tải dữ liệu tướng và thuộc tính:', error);
+  console.error('Không thể đọc dữ liệu tướng đi kèm dự án:', error);
   process.exitCode = 1;
 }

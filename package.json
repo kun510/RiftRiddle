@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "start": "node server.js",
+    "sync:champions": "node scripts/sync-champion-metadata.js",
     "test": "node --test"
   },
   "dependencies": {

@@ -1,0 +1,3949 @@
+{
+  "version": "16.22.1",
+  "champions": [
+    {
+      "id": "Aatrox",
+      "name": "Aatrox",
+      "title": "the Darkin Blade",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "imageFile": "Aatrox.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Blood Well",
+        "rangeType": "Melee",
+        "regions": [
+          "Runeterra"
+        ],
+        "releaseYear": 2013
+      }
+    },
+    {
+      "id": "Ahri",
+      "name": "Ahri",
+      "title": "the Nine-Tailed Fox",
+      "tags": [
+        "Mage",
+        "Assassin"
+      ],
+      "imageFile": "Ahri.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Ionia"
+        ],
+        "releaseYear": 2011
+      }
+    },
+    {
+      "id": "Akali",
+      "name": "Akali",
+      "title": "the Rogue Assassin",
+      "tags": [
+        "Assassin"
+      ],
+      "imageFile": "Akali.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Top",
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Energy",
+        "rangeType": "Melee",
+        "regions": [
+          "Ionia"
+        ],
+        "releaseYear": 2010
+      }
+    },
+    {
+      "id": "Akshan",
+      "name": "Akshan",
+      "title": "the Rogue Sentinel",
+      "tags": [
+        "Marksman",
+        "Assassin"
+      ],
+      "imageFile": "Akshan.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Shurima"
+        ],
+        "releaseYear": 2021
+      }
+    },
+    {
+      "id": "Alistar",
+      "name": "Alistar",
+      "title": "the Minotaur",
+      "tags": [
+        "Tank",
+        "Support"
+      ],
+      "imageFile": "Alistar.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Runeterra"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Ambessa",
+      "name": "Ambessa",
+      "title": "Matriarch of War",
+      "tags": [
+        "Fighter"
+      ],
+      "imageFile": "Ambessa.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Energy",
+        "rangeType": "Melee",
+        "regions": [
+          "Noxus"
+        ],
+        "releaseYear": 2024
+      }
+    },
+    {
+      "id": "Amumu",
+      "name": "Amumu",
+      "title": "the Sad Mummy",
+      "tags": [
+        "Tank",
+        "Mage"
+      ],
+      "imageFile": "Amumu.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Shurima"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Anivia",
+      "name": "Anivia",
+      "title": "the Cryophoenix",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "imageFile": "Anivia.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Freljord"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Annie",
+      "name": "Annie",
+      "title": "the Dark Child",
+      "tags": [
+        "Mage"
+      ],
+      "imageFile": "Annie.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Runeterra"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Aphelios",
+      "name": "Aphelios",
+      "title": "the Weapon of the Faithful",
+      "tags": [
+        "Marksman",
+        "Tank"
+      ],
+      "imageFile": "Aphelios.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Bottom"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Mount-targon"
+        ],
+        "releaseYear": 2019
+      }
+    },
+    {
+      "id": "Ashe",
+      "name": "Ashe",
+      "title": "the Frost Archer",
+      "tags": [
+        "Marksman",
+        "Support"
+      ],
+      "imageFile": "Ashe.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Bottom",
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Freljord"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "AurelionSol",
+      "name": "Aurelion Sol",
+      "title": "The Star Forger",
+      "tags": [
+        "Mage",
+        "Fighter"
+      ],
+      "imageFile": "AurelionSol.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Runeterra"
+        ],
+        "releaseYear": 2016
+      }
+    },
+    {
+      "id": "Aurora",
+      "name": "Aurora",
+      "title": "the Witch Between Worlds",
+      "tags": [
+        "Mage"
+      ],
+      "imageFile": "Aurora.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Top",
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Freljord"
+        ],
+        "releaseYear": 2024
+      }
+    },
+    {
+      "id": "Azir",
+      "name": "Azir",
+      "title": "the Emperor of the Sands",
+      "tags": [
+        "Mage",
+        "Marksman"
+      ],
+      "imageFile": "Azir.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Shurima"
+        ],
+        "releaseYear": 2014
+      }
+    },
+    {
+      "id": "Bard",
+      "name": "Bard",
+      "title": "the Wandering Caretaker",
+      "tags": [
+        "Support",
+        "Mage"
+      ],
+      "imageFile": "Bard.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Runeterra"
+        ],
+        "releaseYear": 2015
+      }
+    },
+    {
+      "id": "Belveth",
+      "name": "Bel'Veth",
+      "title": "the Empress of the Void",
+      "tags": [
+        "Fighter"
+      ],
+      "imageFile": "Belveth.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Manaless",
+        "rangeType": "Melee",
+        "regions": [
+          "Void"
+        ],
+        "releaseYear": 2022
+      }
+    },
+    {
+      "id": "Blitzcrank",
+      "name": "Blitzcrank",
+      "title": "the Great Steam Golem",
+      "tags": [
+        "Tank",
+        "Fighter"
+      ],
+      "imageFile": "Blitzcrank.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Zaun"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Brand",
+      "name": "Brand",
+      "title": "the Burning Vengeance",
+      "tags": [
+        "Mage"
+      ],
+      "imageFile": "Brand.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Jungle",
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Runeterra"
+        ],
+        "releaseYear": 2011
+      }
+    },
+    {
+      "id": "Braum",
+      "name": "Braum",
+      "title": "the Heart of the Freljord",
+      "tags": [
+        "Support",
+        "Tank"
+      ],
+      "imageFile": "Braum.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Freljord"
+        ],
+        "releaseYear": 2014
+      }
+    },
+    {
+      "id": "Briar",
+      "name": "Briar",
+      "title": "the Restrained Hunger",
+      "tags": [
+        "Fighter"
+      ],
+      "imageFile": "Briar.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Fury",
+        "rangeType": "Melee",
+        "regions": [
+          "Noxus"
+        ],
+        "releaseYear": 2023
+      }
+    },
+    {
+      "id": "Caitlyn",
+      "name": "Caitlyn",
+      "title": "the Sheriff of Piltover",
+      "tags": [
+        "Marksman"
+      ],
+      "imageFile": "Caitlyn.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Bottom"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Piltover"
+        ],
+        "releaseYear": 2011
+      }
+    },
+    {
+      "id": "Camille",
+      "name": "Camille",
+      "title": "the Steel Shadow",
+      "tags": [
+        "Fighter"
+      ],
+      "imageFile": "Camille.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Piltover"
+        ],
+        "releaseYear": 2016
+      }
+    },
+    {
+      "id": "Cassiopeia",
+      "name": "Cassiopeia",
+      "title": "the Serpent's Embrace",
+      "tags": [
+        "Mage"
+      ],
+      "imageFile": "Cassiopeia.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Noxus"
+        ],
+        "releaseYear": 2010
+      }
+    },
+    {
+      "id": "Chogath",
+      "name": "Cho'Gath",
+      "title": "the Terror of the Void",
+      "tags": [
+        "Tank",
+        "Mage"
+      ],
+      "imageFile": "Chogath.png",
+      "metadata": {
+        "gender": "Other",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Void"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Corki",
+      "name": "Corki",
+      "title": "the Daring Bombardier",
+      "tags": [
+        "Marksman"
+      ],
+      "imageFile": "Corki.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Bandle-city"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Darius",
+      "name": "Darius",
+      "title": "the Hand of Noxus",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "imageFile": "Darius.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Noxus"
+        ],
+        "releaseYear": 2012
+      }
+    },
+    {
+      "id": "Diana",
+      "name": "Diana",
+      "title": "Scorn of the Moon",
+      "tags": [
+        "Fighter",
+        "Mage"
+      ],
+      "imageFile": "Diana.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Jungle",
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Mount-targon"
+        ],
+        "releaseYear": 2012
+      }
+    },
+    {
+      "id": "Draven",
+      "name": "Draven",
+      "title": "the Glorious Executioner",
+      "tags": [
+        "Marksman"
+      ],
+      "imageFile": "Draven.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Bottom"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Noxus"
+        ],
+        "releaseYear": 2012
+      }
+    },
+    {
+      "id": "DrMundo",
+      "name": "Dr. Mundo",
+      "title": "the Madman of Zaun",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "imageFile": "DrMundo.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "None",
+        "rangeType": "Melee",
+        "regions": [
+          "Zaun"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Ekko",
+      "name": "Ekko",
+      "title": "the Boy Who Shattered Time",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "imageFile": "Ekko.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Jungle",
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Zaun"
+        ],
+        "releaseYear": 2015
+      }
+    },
+    {
+      "id": "Elise",
+      "name": "Elise",
+      "title": "the Spider Queen",
+      "tags": [
+        "Mage",
+        "Fighter"
+      ],
+      "imageFile": "Elise.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Shadow-isles"
+        ],
+        "releaseYear": 2012
+      }
+    },
+    {
+      "id": "Evelynn",
+      "name": "Evelynn",
+      "title": "Agony's Embrace",
+      "tags": [
+        "Assassin",
+        "Mage"
+      ],
+      "imageFile": "Evelynn.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Runeterra"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Ezreal",
+      "name": "Ezreal",
+      "title": "the Prodigal Explorer",
+      "tags": [
+        "Marksman",
+        "Mage"
+      ],
+      "imageFile": "Ezreal.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Bottom"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Piltover"
+        ],
+        "releaseYear": 2010
+      }
+    },
+    {
+      "id": "Fiddlesticks",
+      "name": "Fiddlesticks",
+      "title": "the Ancient Fear",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "imageFile": "Fiddlesticks.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Runeterra"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Fiora",
+      "name": "Fiora",
+      "title": "the Grand Duelist",
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ],
+      "imageFile": "Fiora.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Demacia"
+        ],
+        "releaseYear": 2012
+      }
+    },
+    {
+      "id": "Fizz",
+      "name": "Fizz",
+      "title": "the Tidal Trickster",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "imageFile": "Fizz.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Runeterra"
+        ],
+        "releaseYear": 2011
+      }
+    },
+    {
+      "id": "Galio",
+      "name": "Galio",
+      "title": "the Colossus",
+      "tags": [
+        "Tank",
+        "Mage"
+      ],
+      "imageFile": "Galio.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Demacia"
+        ],
+        "releaseYear": 2010
+      }
+    },
+    {
+      "id": "Gangplank",
+      "name": "Gangplank",
+      "title": "the Saltwater Scourge",
+      "tags": [
+        "Fighter"
+      ],
+      "imageFile": "Gangplank.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Bilgewater"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Garen",
+      "name": "Garen",
+      "title": "The Might of Demacia",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "imageFile": "Garen.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "None",
+        "rangeType": "Melee",
+        "regions": [
+          "Demacia"
+        ],
+        "releaseYear": 2010
+      }
+    },
+    {
+      "id": "Gnar",
+      "name": "Gnar",
+      "title": "the Missing Link",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "imageFile": "Gnar.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Rage",
+        "rangeType": "Melee",
+        "regions": [
+          "Freljord"
+        ],
+        "releaseYear": 2014
+      }
+    },
+    {
+      "id": "Gragas",
+      "name": "Gragas",
+      "title": "the Rabble Rouser",
+      "tags": [
+        "Fighter",
+        "Mage"
+      ],
+      "imageFile": "Gragas.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Freljord"
+        ],
+        "releaseYear": 2010
+      }
+    },
+    {
+      "id": "Graves",
+      "name": "Graves",
+      "title": "the Outlaw",
+      "tags": [
+        "Marksman"
+      ],
+      "imageFile": "Graves.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Bilgewater"
+        ],
+        "releaseYear": 2011
+      }
+    },
+    {
+      "id": "Gwen",
+      "name": "Gwen",
+      "title": "The Hallowed Seamstress",
+      "tags": [
+        "Fighter"
+      ],
+      "imageFile": "Gwen.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Shadow-isles"
+        ],
+        "releaseYear": 2021
+      }
+    },
+    {
+      "id": "Hecarim",
+      "name": "Hecarim",
+      "title": "the Shadow of War",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "imageFile": "Hecarim.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Shadow-isles"
+        ],
+        "releaseYear": 2012
+      }
+    },
+    {
+      "id": "Heimerdinger",
+      "name": "Heimerdinger",
+      "title": "the Revered Inventor",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "imageFile": "Heimerdinger.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Piltover"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Hwei",
+      "name": "Hwei",
+      "title": "the Visionary",
+      "tags": [
+        "Mage"
+      ],
+      "imageFile": "Hwei.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Mid",
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Ionia"
+        ],
+        "releaseYear": 2023
+      }
+    },
+    {
+      "id": "Illaoi",
+      "name": "Illaoi",
+      "title": "the Kraken Priestess",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "imageFile": "Illaoi.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Bilgewater"
+        ],
+        "releaseYear": 2015
+      }
+    },
+    {
+      "id": "Irelia",
+      "name": "Irelia",
+      "title": "the Blade Dancer",
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ],
+      "imageFile": "Irelia.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Top",
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Ionia"
+        ],
+        "releaseYear": 2010
+      }
+    },
+    {
+      "id": "Ivern",
+      "name": "Ivern",
+      "title": "the Green Father",
+      "tags": [
+        "Support",
+        "Mage"
+      ],
+      "imageFile": "Ivern.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Ionia"
+        ],
+        "releaseYear": 2016
+      }
+    },
+    {
+      "id": "Janna",
+      "name": "Janna",
+      "title": "the Storm's Fury",
+      "tags": [
+        "Support",
+        "Mage"
+      ],
+      "imageFile": "Janna.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Zaun"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "JarvanIV",
+      "name": "Jarvan IV",
+      "title": "the Exemplar of Demacia",
+      "tags": [
+        "Tank",
+        "Fighter"
+      ],
+      "imageFile": "JarvanIV.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Demacia"
+        ],
+        "releaseYear": 2011
+      }
+    },
+    {
+      "id": "Jax",
+      "name": "Jax",
+      "title": "Grandmaster at Arms",
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ],
+      "imageFile": "Jax.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top",
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Runeterra"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Jayce",
+      "name": "Jayce",
+      "title": "the Defender of Tomorrow",
+      "tags": [
+        "Fighter",
+        "Marksman"
+      ],
+      "imageFile": "Jayce.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Piltover"
+        ],
+        "releaseYear": 2012
+      }
+    },
+    {
+      "id": "Jhin",
+      "name": "Jhin",
+      "title": "the Virtuoso",
+      "tags": [
+        "Marksman",
+        "Assassin"
+      ],
+      "imageFile": "Jhin.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Bottom"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Ionia"
+        ],
+        "releaseYear": 2016
+      }
+    },
+    {
+      "id": "Jinx",
+      "name": "Jinx",
+      "title": "the Loose Cannon",
+      "tags": [
+        "Marksman"
+      ],
+      "imageFile": "Jinx.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Bottom"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Zaun"
+        ],
+        "releaseYear": 2013
+      }
+    },
+    {
+      "id": "Kaisa",
+      "name": "Kai'Sa",
+      "title": "Daughter of the Void",
+      "tags": [
+        "Marksman"
+      ],
+      "imageFile": "Kaisa.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Bottom"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Void"
+        ],
+        "releaseYear": 2018
+      }
+    },
+    {
+      "id": "Kalista",
+      "name": "Kalista",
+      "title": "the Spear of Vengeance",
+      "tags": [
+        "Marksman"
+      ],
+      "imageFile": "Kalista.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Bottom"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Shadow-isles"
+        ],
+        "releaseYear": 2014
+      }
+    },
+    {
+      "id": "Karma",
+      "name": "Karma",
+      "title": "the Enlightened One",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "imageFile": "Karma.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Mid",
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Ionia"
+        ],
+        "releaseYear": 2011
+      }
+    },
+    {
+      "id": "Karthus",
+      "name": "Karthus",
+      "title": "the Deathsinger",
+      "tags": [
+        "Mage"
+      ],
+      "imageFile": "Karthus.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Shadow-isles"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Kassadin",
+      "name": "Kassadin",
+      "title": "the Void Walker",
+      "tags": [
+        "Assassin",
+        "Mage"
+      ],
+      "imageFile": "Kassadin.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Void"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Katarina",
+      "name": "Katarina",
+      "title": "the Sinister Blade",
+      "tags": [
+        "Assassin",
+        "Mage"
+      ],
+      "imageFile": "Katarina.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Mid"
+        ],
+        "species": [],
+        "resource": "None",
+        "rangeType": "Melee",
+        "regions": [
+          "Noxus"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Kayle",
+      "name": "Kayle",
+      "title": "the Righteous",
+      "tags": [
+        "Fighter",
+        "Support"
+      ],
+      "imageFile": "Kayle.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Demacia"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Kayn",
+      "name": "Kayn",
+      "title": "the Shadow Reaper",
+      "tags": [
+        "Assassin"
+      ],
+      "imageFile": "Kayn.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Ionia"
+        ],
+        "releaseYear": 2017
+      }
+    },
+    {
+      "id": "Kennen",
+      "name": "Kennen",
+      "title": "the Heart of the Tempest",
+      "tags": [
+        "Mage",
+        "Marksman"
+      ],
+      "imageFile": "Kennen.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Energy",
+        "rangeType": "Ranged",
+        "regions": [
+          "Ionia"
+        ],
+        "releaseYear": 2010
+      }
+    },
+    {
+      "id": "Khazix",
+      "name": "Kha'Zix",
+      "title": "the Voidreaver",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "imageFile": "Khazix.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Void"
+        ],
+        "releaseYear": 2012
+      }
+    },
+    {
+      "id": "Kindred",
+      "name": "Kindred",
+      "title": "The Eternal Hunters",
+      "tags": [
+        "Marksman"
+      ],
+      "imageFile": "Kindred.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Runeterra"
+        ],
+        "releaseYear": 2015
+      }
+    },
+    {
+      "id": "Kled",
+      "name": "Kled",
+      "title": "the Cantankerous Cavalier",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "imageFile": "Kled.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Courage",
+        "rangeType": "Melee",
+        "regions": [
+          "Noxus"
+        ],
+        "releaseYear": 2016
+      }
+    },
+    {
+      "id": "KogMaw",
+      "name": "Kog'Maw",
+      "title": "the Mouth of the Abyss",
+      "tags": [
+        "Marksman",
+        "Mage"
+      ],
+      "imageFile": "KogMaw.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Bottom"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Void"
+        ],
+        "releaseYear": 2010
+      }
+    },
+    {
+      "id": "KSante",
+      "name": "K'Sante",
+      "title": "the Pride of Nazumah",
+      "tags": [
+        "Tank"
+      ],
+      "imageFile": "KSante.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Shurima"
+        ],
+        "releaseYear": 2022
+      }
+    },
+    {
+      "id": "Leblanc",
+      "name": "LeBlanc",
+      "title": "the Deceiver",
+      "tags": [
+        "Assassin",
+        "Mage"
+      ],
+      "imageFile": "Leblanc.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Noxus"
+        ],
+        "releaseYear": 2010
+      }
+    },
+    {
+      "id": "LeeSin",
+      "name": "Lee Sin",
+      "title": "the Blind Monk",
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ],
+      "imageFile": "LeeSin.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Energy",
+        "rangeType": "Melee",
+        "regions": [
+          "Ionia"
+        ],
+        "releaseYear": 2011
+      }
+    },
+    {
+      "id": "Leona",
+      "name": "Leona",
+      "title": "the Radiant Dawn",
+      "tags": [
+        "Tank",
+        "Support"
+      ],
+      "imageFile": "Leona.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Mount-targon"
+        ],
+        "releaseYear": 2011
+      }
+    },
+    {
+      "id": "Lillia",
+      "name": "Lillia",
+      "title": "the Bashful Bloom",
+      "tags": [
+        "Fighter"
+      ],
+      "imageFile": "Lillia.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Ionia"
+        ],
+        "releaseYear": 2020
+      }
+    },
+    {
+      "id": "Lissandra",
+      "name": "Lissandra",
+      "title": "the Ice Witch",
+      "tags": [
+        "Mage"
+      ],
+      "imageFile": "Lissandra.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Freljord"
+        ],
+        "releaseYear": 2013
+      }
+    },
+    {
+      "id": "Locke",
+      "name": "Locke",
+      "title": "the Ashen Exorcist",
+      "tags": [
+        "Assassin"
+      ],
+      "imageFile": "Locke.png",
+      "metadata": {
+        "gender": "Other",
+        "positions": [
+          "Unknown"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Demacia"
+        ],
+        "releaseYear": 2026
+      }
+    },
+    {
+      "id": "Lucian",
+      "name": "Lucian",
+      "title": "the Purifier",
+      "tags": [
+        "Marksman"
+      ],
+      "imageFile": "Lucian.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Bottom"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Runeterra"
+        ],
+        "releaseYear": 2013
+      }
+    },
+    {
+      "id": "Lulu",
+      "name": "Lulu",
+      "title": "the Fae Sorceress",
+      "tags": [
+        "Support",
+        "Mage"
+      ],
+      "imageFile": "Lulu.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Bandle-city"
+        ],
+        "releaseYear": 2012
+      }
+    },
+    {
+      "id": "Lux",
+      "name": "Lux",
+      "title": "the Lady of Luminosity",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "imageFile": "Lux.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Mid",
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Demacia"
+        ],
+        "releaseYear": 2010
+      }
+    },
+    {
+      "id": "Malphite",
+      "name": "Malphite",
+      "title": "Shard of the Monolith",
+      "tags": [
+        "Tank",
+        "Fighter"
+      ],
+      "imageFile": "Malphite.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Ixtal"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Malzahar",
+      "name": "Malzahar",
+      "title": "the Prophet of the Void",
+      "tags": [
+        "Mage",
+        "Assassin"
+      ],
+      "imageFile": "Malzahar.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Void"
+        ],
+        "releaseYear": 2010
+      }
+    },
+    {
+      "id": "Maokai",
+      "name": "Maokai",
+      "title": "the Twisted Treant",
+      "tags": [
+        "Tank",
+        "Mage"
+      ],
+      "imageFile": "Maokai.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Shadow-isles"
+        ],
+        "releaseYear": 2011
+      }
+    },
+    {
+      "id": "MasterYi",
+      "name": "Master Yi",
+      "title": "the Wuju Bladesman",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "imageFile": "MasterYi.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Ionia"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Mel",
+      "name": "Mel",
+      "title": "the Soul's Reflection",
+      "tags": [
+        "Mage"
+      ],
+      "imageFile": "Mel.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Mid",
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Noxus"
+        ],
+        "releaseYear": 2025
+      }
+    },
+    {
+      "id": "Milio",
+      "name": "Milio",
+      "title": "The Gentle Flame",
+      "tags": [
+        "Support"
+      ],
+      "imageFile": "Milio.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Ixtal"
+        ],
+        "releaseYear": 2023
+      }
+    },
+    {
+      "id": "MissFortune",
+      "name": "Miss Fortune",
+      "title": "the Bounty Hunter",
+      "tags": [
+        "Marksman"
+      ],
+      "imageFile": "MissFortune.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Bottom"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Bilgewater"
+        ],
+        "releaseYear": 2010
+      }
+    },
+    {
+      "id": "MonkeyKing",
+      "name": "Wukong",
+      "title": "the Monkey King",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "imageFile": "MonkeyKing.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Ionia"
+        ],
+        "releaseYear": 2011
+      }
+    },
+    {
+      "id": "Mordekaiser",
+      "name": "Mordekaiser",
+      "title": "the Iron Revenant",
+      "tags": [
+        "Fighter"
+      ],
+      "imageFile": "Mordekaiser.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Shield",
+        "rangeType": "Melee",
+        "regions": [
+          "Noxus"
+        ],
+        "releaseYear": 2010
+      }
+    },
+    {
+      "id": "Morgana",
+      "name": "Morgana",
+      "title": "the Fallen",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "imageFile": "Morgana.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Demacia"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Naafiri",
+      "name": "Naafiri",
+      "title": "the Hound of a Hundred Bites",
+      "tags": [
+        "Assassin"
+      ],
+      "imageFile": "Naafiri.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Shurima"
+        ],
+        "releaseYear": 2023
+      }
+    },
+    {
+      "id": "Nami",
+      "name": "Nami",
+      "title": "the Tidecaller",
+      "tags": [
+        "Support",
+        "Mage"
+      ],
+      "imageFile": "Nami.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Runeterra"
+        ],
+        "releaseYear": 2012
+      }
+    },
+    {
+      "id": "Nasus",
+      "name": "Nasus",
+      "title": "the Curator of the Sands",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "imageFile": "Nasus.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Shurima"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Nautilus",
+      "name": "Nautilus",
+      "title": "the Titan of the Depths",
+      "tags": [
+        "Tank",
+        "Fighter"
+      ],
+      "imageFile": "Nautilus.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Bilgewater"
+        ],
+        "releaseYear": 2012
+      }
+    },
+    {
+      "id": "Neeko",
+      "name": "Neeko",
+      "title": "the Curious Chameleon",
+      "tags": [
+        "Mage"
+      ],
+      "imageFile": "Neeko.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Mid",
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Ixtal"
+        ],
+        "releaseYear": 2018
+      }
+    },
+    {
+      "id": "Nidalee",
+      "name": "Nidalee",
+      "title": "the Bestial Huntress",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "imageFile": "Nidalee.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Ixtal"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Nilah",
+      "name": "Nilah",
+      "title": "the Joy Unbound",
+      "tags": [
+        "Marksman"
+      ],
+      "imageFile": "Nilah.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Bottom"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Bilgewater"
+        ],
+        "releaseYear": 2022
+      }
+    },
+    {
+      "id": "Nocturne",
+      "name": "Nocturne",
+      "title": "the Eternal Nightmare",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "imageFile": "Nocturne.png",
+      "metadata": {
+        "gender": "Other",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Runeterra"
+        ],
+        "releaseYear": 2011
+      }
+    },
+    {
+      "id": "Nunu",
+      "name": "Nunu & Willump",
+      "title": "the Boy and His Yeti",
+      "tags": [
+        "Tank",
+        "Fighter"
+      ],
+      "imageFile": "Nunu.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Freljord"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Olaf",
+      "name": "Olaf",
+      "title": "the Berserker",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "imageFile": "Olaf.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Freljord"
+        ],
+        "releaseYear": 2010
+      }
+    },
+    {
+      "id": "Orianna",
+      "name": "Orianna",
+      "title": "the Lady of Clockwork",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "imageFile": "Orianna.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Piltover"
+        ],
+        "releaseYear": 2011
+      }
+    },
+    {
+      "id": "Ornn",
+      "name": "Ornn",
+      "title": "The Fire below the Mountain",
+      "tags": [
+        "Tank",
+        "Fighter"
+      ],
+      "imageFile": "Ornn.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Freljord"
+        ],
+        "releaseYear": 2017
+      }
+    },
+    {
+      "id": "Pantheon",
+      "name": "Pantheon",
+      "title": "the Unbreakable Spear",
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ],
+      "imageFile": "Pantheon.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top",
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Mount-targon"
+        ],
+        "releaseYear": 2010
+      }
+    },
+    {
+      "id": "Poppy",
+      "name": "Poppy",
+      "title": "Keeper of the Hammer",
+      "tags": [
+        "Tank",
+        "Fighter"
+      ],
+      "imageFile": "Poppy.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Top",
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Demacia"
+        ],
+        "releaseYear": 2010
+      }
+    },
+    {
+      "id": "Pyke",
+      "name": "Pyke",
+      "title": "the Bloodharbor Ripper",
+      "tags": [
+        "Support"
+      ],
+      "imageFile": "Pyke.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Bilgewater"
+        ],
+        "releaseYear": 2018
+      }
+    },
+    {
+      "id": "Qiyana",
+      "name": "Qiyana",
+      "title": "Empress of the Elements",
+      "tags": [
+        "Assassin"
+      ],
+      "imageFile": "Qiyana.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Ixtal"
+        ],
+        "releaseYear": 2019
+      }
+    },
+    {
+      "id": "Quinn",
+      "name": "Quinn",
+      "title": "Demacia's Wings",
+      "tags": [
+        "Marksman",
+        "Fighter"
+      ],
+      "imageFile": "Quinn.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Demacia"
+        ],
+        "releaseYear": 2013
+      }
+    },
+    {
+      "id": "Rakan",
+      "name": "Rakan",
+      "title": "The Charmer",
+      "tags": [
+        "Support",
+        "Tank"
+      ],
+      "imageFile": "Rakan.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Ionia"
+        ],
+        "releaseYear": 2017
+      }
+    },
+    {
+      "id": "Rammus",
+      "name": "Rammus",
+      "title": "the Armordillo",
+      "tags": [
+        "Tank",
+        "Fighter"
+      ],
+      "imageFile": "Rammus.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Shurima"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "RekSai",
+      "name": "Rek'Sai",
+      "title": "the Void Burrower",
+      "tags": [
+        "Fighter"
+      ],
+      "imageFile": "RekSai.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Rage",
+        "rangeType": "Melee",
+        "regions": [
+          "Void"
+        ],
+        "releaseYear": 2014
+      }
+    },
+    {
+      "id": "Rell",
+      "name": "Rell",
+      "title": "the Iron Maiden",
+      "tags": [
+        "Support"
+      ],
+      "imageFile": "Rell.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Noxus"
+        ],
+        "releaseYear": 2020
+      }
+    },
+    {
+      "id": "Renata",
+      "name": "Renata Glasc",
+      "title": "the Chem-Baroness",
+      "tags": [
+        "Support"
+      ],
+      "imageFile": "Renata.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Zaun"
+        ],
+        "releaseYear": 2022
+      }
+    },
+    {
+      "id": "Renekton",
+      "name": "Renekton",
+      "title": "the Butcher of the Sands",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "imageFile": "Renekton.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Fury",
+        "rangeType": "Melee",
+        "regions": [
+          "Shurima"
+        ],
+        "releaseYear": 2011
+      }
+    },
+    {
+      "id": "Rengar",
+      "name": "Rengar",
+      "title": "the Pridestalker",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "imageFile": "Rengar.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Ferocity",
+        "rangeType": "Melee",
+        "regions": [
+          "Ixtal"
+        ],
+        "releaseYear": 2012
+      }
+    },
+    {
+      "id": "Riven",
+      "name": "Riven",
+      "title": "the Exile",
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ],
+      "imageFile": "Riven.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "None",
+        "rangeType": "Melee",
+        "regions": [
+          "Noxus"
+        ],
+        "releaseYear": 2011
+      }
+    },
+    {
+      "id": "Rumble",
+      "name": "Rumble",
+      "title": "the Mechanized Menace",
+      "tags": [
+        "Fighter",
+        "Mage"
+      ],
+      "imageFile": "Rumble.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Heat",
+        "rangeType": "Melee",
+        "regions": [
+          "Bandle-city"
+        ],
+        "releaseYear": 2011
+      }
+    },
+    {
+      "id": "Ryze",
+      "name": "Ryze",
+      "title": "the Rune Mage",
+      "tags": [
+        "Mage",
+        "Fighter"
+      ],
+      "imageFile": "Ryze.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Runeterra"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Samira",
+      "name": "Samira",
+      "title": "the Desert Rose",
+      "tags": [
+        "Marksman"
+      ],
+      "imageFile": "Samira.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Bottom"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee / Ranged",
+        "regions": [
+          "Noxus"
+        ],
+        "releaseYear": 2020
+      }
+    },
+    {
+      "id": "Sejuani",
+      "name": "Sejuani",
+      "title": "Fury of the North",
+      "tags": [
+        "Tank",
+        "Fighter"
+      ],
+      "imageFile": "Sejuani.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Freljord"
+        ],
+        "releaseYear": 2012
+      }
+    },
+    {
+      "id": "Senna",
+      "name": "Senna",
+      "title": "the Redeemer",
+      "tags": [
+        "Support",
+        "Marksman"
+      ],
+      "imageFile": "Senna.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Bottom",
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Runeterra"
+        ],
+        "releaseYear": 2019
+      }
+    },
+    {
+      "id": "Seraphine",
+      "name": "Seraphine",
+      "title": "the Starry-Eyed Songstress",
+      "tags": [
+        "Mage"
+      ],
+      "imageFile": "Seraphine.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Bottom",
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Piltover"
+        ],
+        "releaseYear": 2020
+      }
+    },
+    {
+      "id": "Sett",
+      "name": "Sett",
+      "title": "the Boss",
+      "tags": [
+        "Fighter"
+      ],
+      "imageFile": "Sett.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Grit",
+        "rangeType": "Melee",
+        "regions": [
+          "Ionia"
+        ],
+        "releaseYear": 2019
+      }
+    },
+    {
+      "id": "Shaco",
+      "name": "Shaco",
+      "title": "the Demon Jester",
+      "tags": [
+        "Assassin"
+      ],
+      "imageFile": "Shaco.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Runeterra"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Shen",
+      "name": "Shen",
+      "title": "the Eye of Twilight",
+      "tags": [
+        "Tank",
+        "Melee"
+      ],
+      "imageFile": "Shen.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Energy",
+        "rangeType": "Melee",
+        "regions": [
+          "Ionia"
+        ],
+        "releaseYear": 2010
+      }
+    },
+    {
+      "id": "Shyvana",
+      "name": "Shyvana",
+      "title": "the Half-Dragon",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "imageFile": "Shyvana.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Fury",
+        "rangeType": "Melee",
+        "regions": [
+          "Demacia"
+        ],
+        "releaseYear": 2011
+      }
+    },
+    {
+      "id": "Singed",
+      "name": "Singed",
+      "title": "the Mad Chemist",
+      "tags": [
+        "Tank",
+        "Fighter"
+      ],
+      "imageFile": "Singed.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Zaun"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Sion",
+      "name": "Sion",
+      "title": "The Undead Juggernaut",
+      "tags": [
+        "Tank",
+        "Fighter"
+      ],
+      "imageFile": "Sion.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Noxus"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Sivir",
+      "name": "Sivir",
+      "title": "the Battle Mistress",
+      "tags": [
+        "Marksman"
+      ],
+      "imageFile": "Sivir.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Bottom"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Shurima"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Skarner",
+      "name": "Skarner",
+      "title": "the Primordial Sovereign",
+      "tags": [
+        "Tank"
+      ],
+      "imageFile": "Skarner.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top",
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Ixtal"
+        ],
+        "releaseYear": 2011
+      }
+    },
+    {
+      "id": "Smolder",
+      "name": "Smolder",
+      "title": "the Fiery Fledgling",
+      "tags": [
+        "Marksman"
+      ],
+      "imageFile": "Smolder.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Bottom"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Runeterra"
+        ],
+        "releaseYear": 2024
+      }
+    },
+    {
+      "id": "Sona",
+      "name": "Sona",
+      "title": "Maven of the Strings",
+      "tags": [
+        "Support",
+        "Mage"
+      ],
+      "imageFile": "Sona.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Demacia"
+        ],
+        "releaseYear": 2010
+      }
+    },
+    {
+      "id": "Soraka",
+      "name": "Soraka",
+      "title": "the Starchild",
+      "tags": [
+        "Support",
+        "Mage"
+      ],
+      "imageFile": "Soraka.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Mount-targon"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Swain",
+      "name": "Swain",
+      "title": "the Noxian Grand General",
+      "tags": [
+        "Mage",
+        "Fighter"
+      ],
+      "imageFile": "Swain.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Noxus"
+        ],
+        "releaseYear": 2010
+      }
+    },
+    {
+      "id": "Sylas",
+      "name": "Sylas",
+      "title": "the Unshackled",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "imageFile": "Sylas.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Demacia"
+        ],
+        "releaseYear": 2018
+      }
+    },
+    {
+      "id": "Syndra",
+      "name": "Syndra",
+      "title": "the Dark Sovereign",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "imageFile": "Syndra.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Ionia"
+        ],
+        "releaseYear": 2012
+      }
+    },
+    {
+      "id": "TahmKench",
+      "name": "Tahm Kench",
+      "title": "The River King",
+      "tags": [
+        "Support",
+        "Tank"
+      ],
+      "imageFile": "TahmKench.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Runeterra"
+        ],
+        "releaseYear": 2015
+      }
+    },
+    {
+      "id": "Taliyah",
+      "name": "Taliyah",
+      "title": "the Stoneweaver",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "imageFile": "Taliyah.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Shurima"
+        ],
+        "releaseYear": 2016
+      }
+    },
+    {
+      "id": "Talon",
+      "name": "Talon",
+      "title": "the Blade's Shadow",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "imageFile": "Talon.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Mid",
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Noxus"
+        ],
+        "releaseYear": 2011
+      }
+    },
+    {
+      "id": "Taric",
+      "name": "Taric",
+      "title": "the Shield of Valoran",
+      "tags": [
+        "Support",
+        "Fighter"
+      ],
+      "imageFile": "Taric.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Mount-targon"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Teemo",
+      "name": "Teemo",
+      "title": "the Swift Scout",
+      "tags": [
+        "Marksman"
+      ],
+      "imageFile": "Teemo.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Bandle-city"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Thresh",
+      "name": "Thresh",
+      "title": "the Chain Warden",
+      "tags": [
+        "Support",
+        "Fighter"
+      ],
+      "imageFile": "Thresh.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Shadow-isles"
+        ],
+        "releaseYear": 2013
+      }
+    },
+    {
+      "id": "Tristana",
+      "name": "Tristana",
+      "title": "the Yordle Gunner",
+      "tags": [
+        "Marksman",
+        "Assassin"
+      ],
+      "imageFile": "Tristana.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Bottom"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Bandle-city"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Trundle",
+      "name": "Trundle",
+      "title": "the Troll King",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "imageFile": "Trundle.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Freljord"
+        ],
+        "releaseYear": 2010
+      }
+    },
+    {
+      "id": "Tryndamere",
+      "name": "Tryndamere",
+      "title": "the Barbarian King",
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ],
+      "imageFile": "Tryndamere.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Fury",
+        "rangeType": "Melee",
+        "regions": [
+          "Freljord"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "TwistedFate",
+      "name": "Twisted Fate",
+      "title": "the Card Master",
+      "tags": [
+        "Mage"
+      ],
+      "imageFile": "TwistedFate.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Mid",
+          "Bottom"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Bilgewater"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Twitch",
+      "name": "Twitch",
+      "title": "the Plague Rat",
+      "tags": [
+        "Marksman",
+        "Assassin"
+      ],
+      "imageFile": "Twitch.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Bottom"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Zaun"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Udyr",
+      "name": "Udyr",
+      "title": "the Spirit Walker",
+      "tags": [
+        "Fighter"
+      ],
+      "imageFile": "Udyr.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top",
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Freljord"
+        ],
+        "releaseYear": 2022
+      }
+    },
+    {
+      "id": "Urgot",
+      "name": "Urgot",
+      "title": "the Dreadnought",
+      "tags": [
+        "Fighter",
+        "Juggernaut"
+      ],
+      "imageFile": "Urgot.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Zaun"
+        ],
+        "releaseYear": 2010
+      }
+    },
+    {
+      "id": "Varus",
+      "name": "Varus",
+      "title": "the Arrow of Retribution",
+      "tags": [
+        "Marksman",
+        "Mage"
+      ],
+      "imageFile": "Varus.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Bottom"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Ionia"
+        ],
+        "releaseYear": 2012
+      }
+    },
+    {
+      "id": "Vayne",
+      "name": "Vayne",
+      "title": "the Night Hunter",
+      "tags": [
+        "Marksman",
+        "Assassin"
+      ],
+      "imageFile": "Vayne.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Bottom"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Demacia"
+        ],
+        "releaseYear": 2011
+      }
+    },
+    {
+      "id": "Veigar",
+      "name": "Veigar",
+      "title": "the Tiny Master of Evil",
+      "tags": [
+        "Mage"
+      ],
+      "imageFile": "Veigar.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Bandle-city"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Velkoz",
+      "name": "Vel'Koz",
+      "title": "the Eye of the Void",
+      "tags": [
+        "Mage"
+      ],
+      "imageFile": "Velkoz.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Void"
+        ],
+        "releaseYear": 2014
+      }
+    },
+    {
+      "id": "Vex",
+      "name": "Vex",
+      "title": "the Gloomist",
+      "tags": [
+        "Mage"
+      ],
+      "imageFile": "Vex.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Shadow-isles"
+        ],
+        "releaseYear": 2021
+      }
+    },
+    {
+      "id": "Vi",
+      "name": "Vi",
+      "title": "the Piltover Enforcer",
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ],
+      "imageFile": "Vi.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Piltover"
+        ],
+        "releaseYear": 2012
+      }
+    },
+    {
+      "id": "Viego",
+      "name": "Viego",
+      "title": "The Ruined King",
+      "tags": [
+        "Assassin"
+      ],
+      "imageFile": "Viego.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "None",
+        "rangeType": "Melee",
+        "regions": [
+          "Shadow-isles"
+        ],
+        "releaseYear": 2021
+      }
+    },
+    {
+      "id": "Viktor",
+      "name": "Viktor",
+      "title": "the Herald of the Arcane",
+      "tags": [
+        "Mage"
+      ],
+      "imageFile": "Viktor.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Zaun"
+        ],
+        "releaseYear": 2011
+      }
+    },
+    {
+      "id": "Vladimir",
+      "name": "Vladimir",
+      "title": "the Crimson Reaper",
+      "tags": [
+        "Mage",
+        "Tank"
+      ],
+      "imageFile": "Vladimir.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Crimson Rush",
+        "rangeType": "Ranged",
+        "regions": [
+          "Noxus"
+        ],
+        "releaseYear": 2010
+      }
+    },
+    {
+      "id": "Volibear",
+      "name": "Volibear",
+      "title": "the Relentless Storm",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "imageFile": "Volibear.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Freljord"
+        ],
+        "releaseYear": 2011
+      }
+    },
+    {
+      "id": "Warwick",
+      "name": "Warwick",
+      "title": "the Uncaged Wrath of Zaun",
+      "tags": [
+        "Fighter",
+        "Tank"
+      ],
+      "imageFile": "Warwick.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Zaun"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Xayah",
+      "name": "Xayah",
+      "title": "the Rebel",
+      "tags": [
+        "Marksman",
+        "Tank"
+      ],
+      "imageFile": "Xayah.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Bottom"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Ionia"
+        ],
+        "releaseYear": 2017
+      }
+    },
+    {
+      "id": "Xerath",
+      "name": "Xerath",
+      "title": "the Magus Ascendant",
+      "tags": [
+        "Mage",
+        "Assassin"
+      ],
+      "imageFile": "Xerath.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Mid",
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Shurima"
+        ],
+        "releaseYear": 2011
+      }
+    },
+    {
+      "id": "XinZhao",
+      "name": "Xin Zhao",
+      "title": "the Seneschal of Demacia",
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ],
+      "imageFile": "XinZhao.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Demacia"
+        ],
+        "releaseYear": 2010
+      }
+    },
+    {
+      "id": "Yasuo",
+      "name": "Yasuo",
+      "title": "the Unforgiven",
+      "tags": [
+        "Fighter",
+        "Assassin"
+      ],
+      "imageFile": "Yasuo.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top",
+          "Mid",
+          "Bottom"
+        ],
+        "species": [],
+        "resource": "Flow",
+        "rangeType": "Melee",
+        "regions": [
+          "Ionia"
+        ],
+        "releaseYear": 2013
+      }
+    },
+    {
+      "id": "Yone",
+      "name": "Yone",
+      "title": "the Unforgotten",
+      "tags": [
+        "Assassin"
+      ],
+      "imageFile": "Yone.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top",
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Flow",
+        "rangeType": "Melee",
+        "regions": [
+          "Ionia"
+        ],
+        "releaseYear": 2020
+      }
+    },
+    {
+      "id": "Yorick",
+      "name": "Yorick",
+      "title": "Shepherd of Souls",
+      "tags": [
+        "Fighter",
+        "Mage"
+      ],
+      "imageFile": "Yorick.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Top"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Shadow-isles"
+        ],
+        "releaseYear": 2011
+      }
+    },
+    {
+      "id": "Yunara",
+      "name": "Yunara",
+      "title": "the Unbroken Faith",
+      "tags": [
+        "Marksman"
+      ],
+      "imageFile": "Yunara.png",
+      "metadata": {
+        "gender": "Other",
+        "positions": [
+          "Unknown"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Ionia"
+        ],
+        "releaseYear": 2025
+      }
+    },
+    {
+      "id": "Yuumi",
+      "name": "Yuumi",
+      "title": "the Magical Cat",
+      "tags": [
+        "Support",
+        "Mage"
+      ],
+      "imageFile": "Yuumi.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Bandle-city"
+        ],
+        "releaseYear": 2019
+      }
+    },
+    {
+      "id": "Zaahen",
+      "name": "Zaahen",
+      "title": "The Unsundered",
+      "tags": [
+        "Fighter"
+      ],
+      "imageFile": "Zaahen.png",
+      "metadata": {
+        "gender": "Other",
+        "positions": [
+          "Unknown"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Melee",
+        "regions": [
+          "Runeterra"
+        ],
+        "releaseYear": 2025
+      }
+    },
+    {
+      "id": "Zac",
+      "name": "Zac",
+      "title": "the Secret Weapon",
+      "tags": [
+        "Tank",
+        "Fighter"
+      ],
+      "imageFile": "Zac.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Jungle"
+        ],
+        "species": [],
+        "resource": "None",
+        "rangeType": "Melee",
+        "regions": [
+          "Zaun"
+        ],
+        "releaseYear": 2013
+      }
+    },
+    {
+      "id": "Zed",
+      "name": "Zed",
+      "title": "the Master of Shadows",
+      "tags": [
+        "Assassin",
+        "Fighter"
+      ],
+      "imageFile": "Zed.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Energy",
+        "rangeType": "Melee",
+        "regions": [
+          "Ionia"
+        ],
+        "releaseYear": 2012
+      }
+    },
+    {
+      "id": "Zeri",
+      "name": "Zeri",
+      "title": "The Spark of Zaun",
+      "tags": [
+        "Marksman"
+      ],
+      "imageFile": "Zeri.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Bottom"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Zaun"
+        ],
+        "releaseYear": 2022
+      }
+    },
+    {
+      "id": "Ziggs",
+      "name": "Ziggs",
+      "title": "the Hexplosives Expert",
+      "tags": [
+        "Mage"
+      ],
+      "imageFile": "Ziggs.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Bottom"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Zaun"
+        ],
+        "releaseYear": 2012
+      }
+    },
+    {
+      "id": "Zilean",
+      "name": "Zilean",
+      "title": "the Chronokeeper",
+      "tags": [
+        "Support",
+        "Mage"
+      ],
+      "imageFile": "Zilean.png",
+      "metadata": {
+        "gender": "Male",
+        "positions": [
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Runeterra"
+        ],
+        "releaseYear": 2009
+      }
+    },
+    {
+      "id": "Zoe",
+      "name": "Zoe",
+      "title": "the Aspect of Twilight",
+      "tags": [
+        "Mage"
+      ],
+      "imageFile": "Zoe.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Mid"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Mount-targon"
+        ],
+        "releaseYear": 2017
+      }
+    },
+    {
+      "id": "Zyra",
+      "name": "Zyra",
+      "title": "Rise of the Thorns",
+      "tags": [
+        "Mage",
+        "Support"
+      ],
+      "imageFile": "Zyra.png",
+      "metadata": {
+        "gender": "Female",
+        "positions": [
+          "Support"
+        ],
+        "species": [],
+        "resource": "Mana",
+        "rangeType": "Ranged",
+        "regions": [
+          "Ixtal"
+        ],
+        "releaseYear": 2012
+      }
+    }
+  ]
+}
