@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#10151b">
+    <title>KunDev510 — Đấu trí tướng</title>
+    <link rel="preconnect" href="https://ddragon.leagueoflegends.com">
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="shell">
+      <header class="topbar">
+        <a class="brand" href="/" aria-label="KunDev510">
+          <span class="brand-mark" aria-hidden="true">K</span>
+          <span>KunDev<b>510</b></span>
+        </a>
+        <span class="topbar-note"><span class="status-dot"></span> ĐẤU TRÍ 1 : 1</span>
+      </header>
+
+      <section id="home-screen" class="screen">
+        <div class="hero">
+          <div class="eyebrow"><span></span> BÀN ĐẤU RIÊNG · HAI NGƯỜI</div>
+          <h1>Đọc vị đối thủ.<br><em>Đoán đúng vị tướng.</em></h1>
+          <p>Chọn một tướng bí mật, lần lượt đoán lựa chọn của nhau và dùng những manh mối để tìm ra đáp án.</p>
+        </div>
+
+        <div class="lobby-grid">
+          <section class="panel setup-panel">
+            <div class="panel-heading">
+              <span class="step-number">01</span>
+              <div><h2>Vào bàn đấu</h2><p>Chọn tên hiển thị để bắt đầu.</p></div>
+            </div>
+            <label class="field-label" for="player-name">TÊN CỦA BẠN</label>
+            <input id="player-name" class="text-input" maxlength="24" placeholder="Ví dụ: Summoner" autocomplete="nickname">
+            <div class="timer-setting">
+              <div class="timer-setting-copy">
+                <label for="timer-enabled">Giới hạn thời gian</label>
+                <small>Mỗi người có cùng thời gian cho mỗi lượt; hết giờ sẽ tự bỏ lượt.</small>
+              </div>
+              <label class="switch" aria-label="Bật hoặc tắt giới hạn thời gian">
+                <input id="timer-enabled" type="checkbox">
+                <span class="switch-track" aria-hidden="true"></span>
+              </label>
+              <select id="timer-duration" class="text-input timer-select" aria-label="Thời gian cho mỗi lượt" disabled>
+                <option value="15">15 giây</option>
+                <option value="30">30 giây</option>
+                <option value="45">45 giây</option>
+                <option value="60" selected>60 giây</option>
+                <option value="90">90 giây</option>
+                <option value="120">120 giây</option>
+              </select>
+            </div>
+            <div class="room-actions">
+              <button id="create-room" class="button button-primary"><span>＋</span> Tạo phòng mới</button>
+              <div class="join-row">
+                <input id="room-code" class="text-input code-input" maxlength="5" placeholder="MÃ PHÒNG" aria-label="Mã phòng" autocomplete="off">
+                <button id="join-room" class="button button-secondary">Vào phòng <span>→</span></button>
+              </div>
+            </div>
+            <p id="home-error" class="error-message" role="alert"></p>
+          </section>
+
+          <aside class="panel rules-panel">
+            <div class="panel-heading">
+              <span class="step-number">02</span>
+              <div><h2>Cách chơi</h2><p>Ba bước, không cần cài đặt thêm.</p></div>
+            </div>
+            <ol class="rules-list">
+              <li><span>01</span><p>Tạo phòng, gửi mã cho một người bạn.</p></li>
+              <li><span>02</span><p>Mỗi người bí mật chọn một tướng rồi cùng sẵn sàng.</p></li>
+              <li><span>03</span><p>Luân phiên đoán; manh mối chỉ ra thuộc tính đúng hoặc hướng cao/thấp.</p></li>
+            </ol>
+            <div class="rules-foot"><span class="status-dot"></span> Phòng riêng tối đa 2 người</div>
+          </aside>
+        </div>
+        <footer class="page-footer"><span>KunDev510</span><span>DỮ LIỆU TƯỚNG TỪ RIOT DATA DRAGON &amp; UNIVERSE</span></footer>
+      </section>
+
+      <section id="room-screen" class="screen room-screen hidden" aria-live="polite"></section>
+      <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    </main>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>
