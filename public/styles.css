@@ -62,6 +62,9 @@ h1 em { color: var(--accent-bright); font-style: normal; }
 .text-input { width: 100%; color: var(--text); outline: none; background: #11171d; border: 1px solid #303b45; border-radius: 5px; padding: 12px 13px; font-size: 13px; transition: border-color .15s, box-shadow .15s; }
 .text-input:focus { border-color: #947b50; box-shadow: 0 0 0 3px rgba(200, 168, 109, .1); }
 .text-input::placeholder { color: #62717d; }
+.mode-setting { margin-top: 15px; }
+.game-mode-select { padding: 11px 12px; }
+.mode-setting-note { display: block; margin-top: 6px; color: var(--muted); font-size: 9px; line-height: 1.4; }
 .timer-setting { display: grid; grid-template-columns: minmax(0, 1fr) auto 112px; gap: 12px; align-items: center; margin-top: 15px; padding: 11px 12px; border: 1px solid #303b45; border-radius: 5px; background: #141a20; }
 .timer-setting-copy label { display: block; color: #dce3e7; font-size: 11px; font-weight: 600; }
 .timer-setting-copy small { display: block; margin-top: 4px; color: var(--muted); font-size: 9px; line-height: 1.4; }
@@ -104,10 +107,9 @@ h1 em { color: var(--accent-bright); font-style: normal; }
 .room-code-box small { display: block; color: var(--muted); font: 8px var(--mono); letter-spacing: .1em; }
 .room-code { color: var(--accent-bright); font: 17px var(--mono); letter-spacing: .18em; }
 .copy-button { border: 1px solid #34404a; background: #202a33; color: #c8d0d5; border-radius: 4px; padding: 7px 9px; font-size: 10px; }
-.room-grid { display: grid; grid-template-columns: minmax(0, 1fr) 292px; gap: 17px; align-items: start; }
-.game-panel { padding: 22px; min-height: 460px; }
-.side-stack { display: grid; gap: 17px; min-width: 0; align-self: start; }
-.side-panel { padding: 19px; }
+.room-grid { display: grid; grid-template-columns: 292px minmax(0, 1fr); grid-template-areas: "sidebar game"; gap: 17px; align-items: start; }
+.game-panel { grid-area: game; padding: 22px; min-height: 460px; }
+.side-stack { grid-area: sidebar; min-width: 0; align-self: start; }
 .chat-panel { display: flex; min-width: 0; min-height: 365px; flex-direction: column; padding: 16px; }
 .chat-heading { display: flex; align-items: flex-start; justify-content: space-between; gap: 8px; padding-bottom: 12px; border-bottom: 1px solid #2c3741; }
 .chat-heading h2 { margin: 0; font-size: 13px; }
@@ -130,7 +132,6 @@ h1 em { color: var(--accent-bright); font-style: normal; }
 .players-row { display: grid; grid-template-columns: 1fr 44px 1fr; align-items: stretch; gap: 10px; margin: 13px 0 21px; }
 .player-card { display: flex; align-items: center; gap: 11px; padding: 12px; min-width: 0; background: #141a21; border: 1px solid #2a3540; border-radius: 6px; }
 .player-avatar { flex: 0 0 34px; display: grid; place-items: center; width: 34px; height: 34px; border-radius: 5px; background: #2b323a; color: var(--accent-bright); font: 14px Georgia, serif; }
-.avatar-champion { width: 100%; height: 100%; object-fit: cover; border-radius: 4px; }
 .player-card.active { border-color: #8b744d; box-shadow: inset 0 0 0 1px rgba(200, 168, 109, .12); }
 .player-info { min-width: 0; }
 .player-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 12px; font-weight: 600; }
@@ -147,7 +148,6 @@ h1 em { color: var(--accent-bright); font-style: normal; }
 .champion-suggestions[hidden] { display: none; }
 .champion-option { display: flex; width: 100%; align-items: center; gap: 10px; padding: 7px; border: 1px solid transparent; border-radius: 5px; background: transparent; color: var(--text); text-align: left; }
 .champion-option:hover, .champion-option.active { border-color: #65573e; background: #242d35; }
-.champion-option img { flex: 0 0 40px; width: 40px; height: 40px; border-radius: 4px; object-fit: cover; }
 .champion-option-copy { min-width: 0; flex: 1; }
 .champion-option-name { display: block; overflow: hidden; color: #edf1f3; font-size: 12px; font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }
 .champion-option-title { display: block; overflow: hidden; margin-top: 3px; color: #8e9ba5; font-size: 10px; text-overflow: ellipsis; white-space: nowrap; }
@@ -164,6 +164,15 @@ h1 em { color: var(--accent-bright); font-style: normal; }
 .turn-indicator { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 12px rgba(200,168,109,.45); }
 .turn-banner.waiting .turn-indicator { background: #76828c; box-shadow: none; }
 .guess-area { padding-bottom: 17px; border-bottom: 1px solid #29343e; }
+.mode-hint { margin-bottom: 15px; padding: 13px; border: 1px solid #34414a; border-radius: 5px; background: #1b242c; }
+.mode-hint-label { color: var(--accent); font: 9px var(--mono); letter-spacing: .12em; }
+.mode-emojis { margin-top: 10px; font-size: 32px; line-height: 1.4; letter-spacing: .12em; }
+.mode-quote { margin: 9px 0 0; color: #dce3e7; font-size: 13px; line-height: 1.6; }
+.mode-hint-image { display: block; }
+.mode-splash { width: 100%; max-height: 300px; margin-top: 10px; border-radius: 4px; object-fit: cover; object-position: center 24%; }
+.mode-abilities { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; margin-top: 10px; }
+.mode-ability { display: grid; justify-items: center; gap: 6px; color: #b8c2c9; font: 9px var(--mono); }
+.mode-ability img { width: min(100%, 56px); aspect-ratio: 1; border: 1px solid #394651; border-radius: 4px; }
 .guess-area .champion-select-row { max-width: 520px; }
 .guess-area .button { min-width: 112px; }
 .history-head { display: flex; align-items: center; justify-content: space-between; margin: 19px 0 11px; }
@@ -171,12 +180,17 @@ h1 em { color: var(--accent-bright); font-style: normal; }
 .guess-count { color: var(--muted); font: 9px var(--mono); }
 .empty-history { display: grid; place-items: center; min-height: 94px; border: 1px dashed #303b45; border-radius: 5px; color: #77838d; font-size: 11px; text-align: center; line-height: 1.7; padding: 14px; }
 .guess-entry { display: grid; grid-template-columns: minmax(115px, 1fr) 2.7fr; align-items: center; gap: 13px; padding: 10px 0; border-bottom: 1px solid rgba(48, 59, 69, .65); }
+.guess-entry.no-clues { grid-template-columns: minmax(0, 1fr); }
 .guess-entry:last-child { border-bottom: 0; }
+.private-note-panel { margin-top: 21px; padding: 15px; border: 1px solid #303b45; border-radius: 6px; background: #141a21; }
+.private-note-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; margin-bottom: 10px; }
+.private-note-heading label { display: block; color: #dce3e7; font-size: 11px; font-weight: 600; }
+.private-note-heading small { display: block; margin-top: 4px; color: var(--muted); font-size: 9px; }
+.private-note-input { min-height: 94px; resize: vertical; font-size: 11px; line-height: 1.5; }
 .guess-timeout { display: flex; align-items: center; gap: 9px; padding: 10px; border-bottom: 1px solid rgba(48, 59, 69, .65); color: #b8c2c9; font-size: 10px; }
 .guess-timeout-mark { display: grid; width: 24px; height: 24px; place-items: center; border-radius: 50%; background: #303943; color: #e2c37b; font: 12px var(--mono); }
 .guess-author { color: var(--muted); font-size: 9px; margin-bottom: 4px; }
 .guess-champion-row { display: flex; align-items: center; gap: 8px; }
-.champion-thumb { flex: 0 0 28px; width: 28px; height: 28px; object-fit: cover; border-radius: 4px; }
 .guess-champion { color: #e4e9ec; font-size: 12px; font-weight: 600; }
 .clue-grid { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; }
 .clue { min-width: 0; text-align: center; border-radius: 3px; padding: 5px 3px; background: #252e36; color: #b8c2c9; }
@@ -186,21 +200,6 @@ h1 em { color: var(--accent-bright); font-style: normal; }
 .clue.higher, .clue.lower { background: rgba(151, 117, 49, .31); color: #e3c97f; }
 .clue-label { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; opacity: .78; font: 7px var(--mono); }
 .clue-value { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; margin-top: 3px; font: 9px var(--mono); }
-.side-title { margin: 0 0 14px; font-size: 12px; }
-.side-player { display: flex; justify-content: space-between; gap: 9px; padding: 11px 0; border-top: 1px solid #2c3741; font-size: 11px; }
-.side-player-name { color: #d7dfe3; }
-.side-player-status { color: var(--muted); font-size: 9px; text-align: right; }
-.side-player-status.ready { color: var(--green); }
-.side-note { padding: 11px; margin-top: 13px; border-radius: 4px; background: #202a32; color: #aab6bd; font-size: 10px; line-height: 1.6; }
-.side-note strong { color: var(--accent-bright); }
-.legend { display: grid; gap: 7px; margin-top: 17px; }
-.legend-item { display: flex; align-items: center; gap: 8px; color: var(--muted); font-size: 9px; }
-.legend-swatch { width: 9px; height: 9px; border-radius: 2px; }
-.legend-swatch.correct { background: #559c74; }
-.legend-swatch.partial { background: #aa8b46; }
-.legend-swatch.wrong { background: #985b56; }
-.legend-swatch.unknown { background: #66737e; }
-.legend-swatch.higher { background: linear-gradient(#aa8b46 50%, #43505a 50%); }
 .result-banner { padding: 17px; margin-bottom: 15px; border: 1px solid #67583c; background: rgba(129, 100, 46, .16); border-radius: 6px; }
 .result-banner h2 { margin: 0 0 5px; color: var(--accent-bright); font-size: 18px; }
 .result-banner p { margin: 0; color: #b8c1c6; font-size: 11px; }
@@ -216,7 +215,7 @@ h1 em { color: var(--accent-bright); font-style: normal; }
   .lobby-grid { grid-template-columns: 1fr; }
   .setup-panel, .rules-panel { min-height: 0; }
   .rules-foot { margin-top: 20px; }
-  .room-grid { grid-template-columns: 1fr; }
+  .room-grid { grid-template-columns: 1fr; grid-template-areas: "game" "sidebar"; }
   .side-stack { grid-row: auto; }
   .chat-panel { min-height: 0; }
 }
@@ -225,7 +224,7 @@ h1 em { color: var(--accent-bright); font-style: normal; }
   .topbar { height: 62px; }
   .topbar-note { font-size: 8px; }
   h1 { font-size: 39px; }
-  .setup-panel, .rules-panel, .game-panel, .side-panel { padding: 18px; }
+  .setup-panel, .rules-panel, .game-panel { padding: 18px; }
   .chat-panel { padding: 16px; }
   .room-head { align-items: flex-start; flex-direction: column; }
   .room-title { font-size: 21px; }

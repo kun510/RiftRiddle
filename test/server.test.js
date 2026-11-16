@@ -91,6 +91,7 @@ test('two players can create a room, alternate guesses, and finish a round', { t
     await new Promise((resolve) => setTimeout(resolve, 250));
   }
   assert.ok(champions?.length, 'server should load the champion catalogue');
+  assert.ok(champions.every((champion) => !('image' in champion)), 'champion catalogue should not include image data');
 
   const annie = champions.find((champion) => champion.name === 'Annie');
   const ashe = champions.find((champion) => champion.name === 'Ashe');
@@ -102,6 +103,7 @@ test('two players can create a room, alternate guesses, and finish a round', { t
   clients.push(first, second);
 
   const created = await emitAck(first, 'room:create', { name: 'Người chơi A', timerSeconds: 15 });
+  assert.equal(created.room.gameMode, 'classic');
   const joined = await emitAck(second, 'room:join', { name: 'Người chơi B', code: created.room.code });
   assert.equal(joined.room.players.length, 2);
   assert.equal(joined.room.timerSeconds, 15);
@@ -143,4 +145,25 @@ test('two players can create a room, alternate guesses, and finish a round', { t
   assert.equal(finished.winnerId, firstTurnClient.id);
   assert.equal(finished.log.at(-1).isCorrect, true);
   assert.deepEqual(finished.revealedTargets.map((item) => item.champion).sort(), ['Annie', 'Ashe']);
+
+  const emojiHost = await connectClient(url);
+  const emojiGuest = await connectClient(url);
+  clients.push(emojiHost, emojiGuest);
+  const emojiRoom = await emitAck(emojiHost, 'room:create', { name: 'Emoji A', gameMode: 'emoji' });
+  await emitAck(emojiGuest, 'room:join', { name: 'Emoji B', code: emojiRoom.room.code });
+  await assert.rejects(emitAck(emojiHost, 'room:choose', { championId: annie.id }), /tướng ngẫu nhiên chung/);
+  await emitAck(emojiHost, 'room:ready', {});
+  await emitAck(emojiGuest, 'room:ready', {});
+  const emojiStarted = await waitForState(emojiHost, (state) => state.phase === 'playing');
+  assert.equal(emojiStarted.gameMode, 'emoji');
+  assert.equal(emojiStarted.modeHint.kind, 'emoji');
+  assert.ok(emojiStarted.modeHint.emojis.length);
+  assert.equal(emojiStarted.players.find((player) => player.isSelf).ownChampion, null);
+
+  for (const gameMode of ['splash', 'quote', 'ability']) {
+    const modeClient = await connectClient(url);
+    clients.push(modeClient);
+    const modeRoom = await emitAck(modeClient, 'room:create', { name: `${gameMode} host`, gameMode });
+    assert.equal(modeRoom.room.gameMode, gameMode);
+  }
 });

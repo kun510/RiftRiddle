@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#10151b">
     <title>KunDev510 — Đấu trí tướng</title>
-    <link rel="preconnect" href="https://ddragon.leagueoflegends.com">
     <link rel="stylesheet" href="/styles.css">
   </head>
   <body>
@@ -33,6 +32,17 @@
             </div>
             <label class="field-label" for="player-name">TÊN CỦA BẠN</label>
             <input id="player-name" class="text-input" maxlength="24" placeholder="Ví dụ: Summoner" autocomplete="nickname">
+            <div class="mode-setting">
+              <label class="field-label" for="game-mode">CHẾ ĐỘ CHƠI</label>
+              <select id="game-mode" class="text-input game-mode-select">
+                <option value="classic">Cổ điển · So sánh thuộc tính</option>
+                <option value="emoji">Emoji · Đoán qua biểu tượng</option>
+                <option value="splash">Splash · Đoán qua splash art</option>
+                <option value="quote">Câu gợi ý · Gợi ý tự tạo</option>
+                <option value="ability">Kỹ năng · Đoán qua icon Q/W/E/R</option>
+              </select>
+              <small class="mode-setting-note">Cổ điển: mỗi người chọn một tướng riêng. Mode khác: máy chọn ngẫu nhiên một đáp án chung.</small>
+            </div>
             <div class="timer-setting">
               <div class="timer-setting-copy">
                 <label for="timer-enabled">Giới hạn thời gian</label>

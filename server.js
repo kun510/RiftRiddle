@@ -11,17 +11,18 @@ const io = new Server(httpServer);
 const rooms = new Map();
 const alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 const timerDurations = new Set([0, 15, 30, 45, 60, 90, 120]);
+const gameModes = new Set(['classic', 'emoji', 'splash', 'quote', 'ability']);
 let champions = [];
 let championById = new Map();
 let championMetadataById = new Map();
 const universeDetailsById = new Map();
+const abilityHintsByChampionId = new Map();
 let dataDragonVersion = '';
 
 app.use(express.static('public'));
 app.get('/api/champions', (_req, res) => {
   res.json({
-    version: dataDragonVersion,
-    champions: champions.map(({ id, name, title, image, tags }) => ({ id, name, title, image, tags })),
+    champions: champions.map(({ id, name, title, tags }) => ({ id, name, title, tags })),
   });
 });
 
@@ -46,6 +47,7 @@ function publicState(room, selfId) {
     code: room.code,
     players,
     phase: room.phase,
+    gameMode: room.gameMode,
     timerSeconds: room.timerSeconds,
     turnExpiresAt: room.turnExpiresAt,
     turnPlayerId: room.turnPlayerId,
@@ -54,12 +56,20 @@ function publicState(room, selfId) {
     winnerId: room.winnerId,
   };
 
+  if (room.phase === 'playing') {
+    state.modeHint = room.gameMode === 'classic' ? null : room.sharedModeHint;
+  }
   if (room.phase === 'finished') {
-    state.revealedTargets = [...room.players.entries()].map(([id, player]) => ({
-      id,
-      name: player.name,
-      champion: championById.get(player.targetId)?.name ?? 'Chưa chọn',
-    }));
+    state.revealedTargets = room.gameMode === 'classic'
+      ? [...room.players.entries()].map(([id, player]) => ({
+        id,
+        name: player.name,
+        champion: championById.get(player.targetId)?.name ?? 'Chưa chọn',
+      }))
+      : [{
+        name: 'Đáp án chung',
+        champion: championById.get(room.sharedTargetId)?.name ?? 'Chưa chọn',
+      }];
   }
 
   return state;
@@ -84,6 +94,9 @@ function resetMatch(room) {
   room.turnPlayerId = null;
   room.winnerId = null;
   room.log = [];
+  room.sharedTargetId = null;
+  room.sharedModeHint = null;
+  room.starting = false;
   for (const player of room.players.values()) {
     player.ready = false;
     player.targetId = null;
@@ -171,17 +184,128 @@ async function getChampionDetails(championId) {
   }
 }
 
+async function getAbilityModeHint(champion) {
+  if (abilityHintsByChampionId.has(champion.id)) {
+    return abilityHintsByChampionId.get(champion.id);
+  }
+
+  const pendingHint = (async () => {
+    const response = await fetch(
+      `https://ddragon.leagueoflegends.com/cdn/${encodeURIComponent(dataDragonVersion)}/data/en_US/champion/${encodeURIComponent(champion.id)}.json`,
+      { signal: AbortSignal.timeout(6000) },
+    );
+    if (!response.ok) throw new Error(`Data Dragon trả về HTTP ${response.status}`);
+    const payload = await response.json();
+    const spells = payload.data?.[champion.id]?.spells;
+    if (!Array.isArray(spells) || spells.length < 4) {
+      throw new Error(`Data Dragon thiếu dữ liệu kỹ năng cho ${champion.name}.`);
+    }
+
+    return spells.slice(0, 4).map((spell, index) => {
+      if (typeof spell.image?.full !== 'string' || !spell.image.full) {
+        throw new Error(`Data Dragon thiếu biểu tượng kỹ năng ${index + 1} của ${champion.name}.`);
+      }
+      return {
+        key: ['Q', 'W', 'E', 'R'][index],
+        imageUrl: `https://ddragon.leagueoflegends.com/cdn/${encodeURIComponent(dataDragonVersion)}/img/spell/${encodeURIComponent(spell.image.full)}`,
+      };
+    });
+  })();
+  abilityHintsByChampionId.set(champion.id, pendingHint);
+
+  try {
+    return await pendingHint;
+  } catch (error) {
+    abilityHintsByChampionId.delete(champion.id);
+    throw error;
+  }
+}
+
+async function getModeHint(championId, gameMode) {
+  if (gameMode === 'classic') return null;
+  const champion = championById.get(championId);
+  const metadata = championMetadataById.get(championId);
+  if (!champion || !metadata) throw new Error('Không tìm thấy dữ liệu cho vị tướng này.');
+
+  if (gameMode === 'emoji') {
+    const roleEmojis = {
+      Assassin: '🗡️',
+      Fighter: '⚔️',
+      Mage: '🔮',
+      Marksman: '🏹',
+      Support: '✨',
+      Tank: '🛡️',
+    };
+    const regionEmojis = {
+      'Bandle City': '🎪',
+      Bilgewater: '🏴‍☠️',
+      Demacia: '🏰',
+      Freljord: '❄️',
+      Ionia: '🌸',
+      Ixtal: '🌿',
+      Noxus: '🟥',
+      Piltover: '⚙️',
+      'Shadow Isles': '👻',
+      Shurima: '🌞',
+      Targon: '⛰️',
+      'The Void': '🟣',
+      Zaun: '🧪',
+      Runeterra: '🌍',
+    };
+    const positionEmojis = { Top: '🛡️', Jungle: '🌲', Mid: '🔮', Bottom: '🏹', Support: '💚' };
+    const emojis = [
+      regionEmojis[metadata.regions?.[0]],
+      roleEmojis[champion.tags?.[0]],
+      positionEmojis[metadata.positions?.[0]],
+      metadata.rangeType === 'Ranged' ? '🎯' : metadata.rangeType === 'Melee' ? '👊' : null,
+    ].filter(Boolean);
+    return { kind: 'emoji', emojis };
+  }
+
+  if (gameMode === 'splash') {
+    return {
+      kind: 'splash',
+      imageUrl: `https://ddragon.leagueoflegends.com/cdn/${encodeURIComponent(dataDragonVersion)}/img/champion/splash/${encodeURIComponent(champion.id)}_0.jpg`,
+    };
+  }
+
+  if (gameMode === 'quote') {
+    const roleLabels = {
+      Assassin: 'sát thủ',
+      Fighter: 'đấu sĩ',
+      Mage: 'pháp sư',
+      Marksman: 'xạ thủ',
+      Support: 'hỗ trợ',
+      Tank: 'đỡ đòn',
+    };
+    const role = champion.tags?.map((tag) => roleLabels[tag]).find(Boolean) ?? 'chiến binh';
+    const region = metadata.regions?.[0] || 'Runeterra';
+    return { kind: 'quote', text: `Một ${role} đến từ ${region} đang chờ bạn gọi đúng tên.` };
+  }
+
+  if (gameMode === 'ability') {
+    return { kind: 'ability', abilities: await getAbilityModeHint(champion) };
+  }
+
+  throw new Error('Chế độ chơi không hợp lệ.');
+}
+
 io.on('connection', (socket) => {
-  socket.on('room:create', ({ name, timerSeconds = 0 } = {}, ack) => {
+  socket.on('room:create', ({ name, timerSeconds = 0, gameMode = 'classic' } = {}, ack) => {
     if (socket.data.roomCode) return sendError(ack, 'Bạn đang ở trong một phòng.');
     const playerName = cleanName(name);
     if (!playerName) return sendError(ack, 'Hãy nhập tên hiển thị của bạn.');
     if (!timerDurations.has(timerSeconds)) return sendError(ack, 'Thời gian mỗi lượt không hợp lệ.');
+    if (!gameModes.has(gameMode)) return sendError(ack, 'Chế độ chơi không hợp lệ.');
 
     const room = {
       code: makeRoomCode(),
       players: new Map([[socket.id, { name: playerName, ready: false, targetId: null, lastChatAt: 0 }]]),
       phase: 'lobby',
+      gameMode,
+      sharedTargetId: null,
+      sharedModeHint: null,
+      starting: false,
       timerSeconds,
       turnExpiresAt: null,
       turnTimer: null,
@@ -244,6 +368,7 @@ io.on('connection', (socket) => {
     const room = rooms.get(socket.data.roomCode);
     const player = room?.players.get(socket.id);
     if (!room || !player || room.phase !== 'lobby') return sendError(ack, 'Phòng không ở trạng thái chọn tướng.');
+    if (room.gameMode !== 'classic') return sendError(ack, 'Mode này dùng một tướng ngẫu nhiên chung, không cần chọn tướng bí mật.');
     if (!championById.has(championId)) return sendError(ack, 'Không tìm thấy vị tướng này.');
     try {
       await getChampionDetails(championId);
@@ -260,15 +385,41 @@ io.on('connection', (socket) => {
     broadcastState(room);
   });
 
-  socket.on('room:ready', (_payload, ack) => {
+  socket.on('room:ready', async (_payload, ack) => {
     const room = rooms.get(socket.data.roomCode);
     const player = room?.players.get(socket.id);
     if (!room || !player || room.phase !== 'lobby') return sendError(ack, 'Phòng không ở trạng thái chờ.');
+    if (room.starting) return sendError(ack, 'Đang chuẩn bị ván đấu. Hãy chờ một chút.');
     if (room.players.size !== 2) return sendError(ack, 'Đang chờ người chơi thứ hai.');
-    if (!player.targetId) return sendError(ack, 'Hãy chọn tướng bí mật trước.');
+    if (room.gameMode === 'classic' && !player.targetId) return sendError(ack, 'Hãy chọn tướng bí mật trước.');
     player.ready = !player.ready;
 
     if ([...room.players.values()].every((candidate) => candidate.ready)) {
+      if (room.gameMode !== 'classic') {
+        room.starting = true;
+        const sharedTarget = champions[randomInt(champions.length)];
+        let sharedModeHint;
+        try {
+          sharedModeHint = await getModeHint(sharedTarget.id, room.gameMode);
+        } catch (error) {
+          console.error(`Không tải được gợi ý mode ${room.gameMode} trong phòng ${room.code}:`, error);
+          room.starting = false;
+          if (room.players.get(socket.id) === player) player.ready = false;
+          sendError(ack, 'Không tải được dữ liệu gợi ý. Hãy thử bắt đầu lại sau ít phút.');
+          broadcastState(room);
+          return;
+        }
+
+        if (rooms.get(room.code) !== room || room.phase !== 'lobby' || room.players.size !== 2
+          || ![...room.players.values()].every((candidate) => candidate.ready)) {
+          room.starting = false;
+          return sendError(ack, 'Trạng thái phòng đã thay đổi. Hãy thử sẵn sàng lại.');
+        }
+        room.sharedTargetId = sharedTarget.id;
+        room.sharedModeHint = sharedModeHint;
+        room.starting = false;
+      }
+
       room.phase = 'playing';
       room.log = [];
       const firstPlayerId = [...room.players.keys()][randomInt(room.players.size)];
@@ -288,29 +439,35 @@ io.on('connection', (socket) => {
     const opponent = [...room.players.entries()].find(([id]) => id !== socket.id);
     if (!opponent) return sendError(ack, 'Không tìm thấy đối thủ trong phòng.');
     const [opponentId, opponentPlayer] = opponent;
-    let guess;
-    let target;
-    try {
-      [guess, target] = await Promise.all([
-        getChampionDetails(championId),
-        getChampionDetails(opponentPlayer.targetId),
-      ]);
-    } catch (error) {
-      console.error(`Không tải được dữ liệu lượt đoán trong phòng ${room.code}:`, error);
-      return sendError(ack, 'Không tải được dữ liệu tướng. Hãy thử lại sau ít phút.');
+    const targetId = room.gameMode === 'classic' ? opponentPlayer.targetId : room.sharedTargetId;
+    if (!targetId) return sendError(ack, 'Chưa có đáp án cho ván đấu này.');
+    let clues = [];
+    if (room.gameMode === 'classic') {
+      let guess;
+      let target;
+      try {
+        [guess, target] = await Promise.all([
+          getChampionDetails(championId),
+          getChampionDetails(targetId),
+        ]);
+      } catch (error) {
+        console.error(`Không tải được dữ liệu lượt đoán trong phòng ${room.code}:`, error);
+        return sendError(ack, 'Không tải được dữ liệu tướng. Hãy thử lại sau ít phút.');
+      }
+      clues = buildClues(guess, target);
     }
     if (rooms.get(room.code) !== room || room.phase !== 'playing' || room.turnPlayerId !== socket.id) {
       return sendError(ack, 'Lượt chơi đã thay đổi. Hãy kiểm tra lại lượt của bạn.');
     }
 
-    const isCorrect = championId === opponentPlayer.targetId;
+    const isCorrect = championId === targetId;
     const player = room.players.get(socket.id);
     room.log.push({
       playerId: socket.id,
       playerName: player.name,
       championId,
       championName: championById.get(championId).name,
-      clues: buildClues(guess, target),
+      clues,
       isCorrect,
     });
 
@@ -369,7 +526,6 @@ async function loadChampions() {
     name: entry.name,
     title: entry.title,
     tags: entry.tags,
-    image: { full: entry.imageFile },
   }));
   championById = new Map(champions.map((champion) => [champion.id, champion]));
   championMetadataById = new Map(catalogue.champions.map((entry) => [entry.id, entry.metadata]));
