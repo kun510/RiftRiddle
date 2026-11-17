@@ -13,7 +13,6 @@ const gameModeLabels = {
   random: 'Ngẫu nhiên',
   emoji: 'Emoji',
   splash: 'Splash',
-  quote: 'Câu gợi ý',
   ability: 'Kỹ năng',
 };
 const clueStatusIndicators = {
@@ -334,8 +333,24 @@ function playerCard(player, active, isPlaying) {
     : '';
   return `<div class="player-card${active ? ' active' : ''}">
     <span class="player-avatar">${initial}</span>
-    <div class="player-info"><div class="player-heading"><div class="player-name">${escapeHtml(player.name)}</div>${turnBadge}</div><div class="player-meta">${meta}</div></div>
+    <div class="player-info"><div class="player-heading"><div class="player-name">${escapeHtml(player.name)}</div>${turnBadge}</div><div class="player-meta">${meta}</div><div class="player-score">${player.score} điểm</div></div>
   </div>`;
+}
+
+function renderMatchHistory() {
+  const history = roomState.matchHistory ?? [];
+  const entries = history.slice().reverse().map((match) => {
+    const scores = match.scores
+      .map((player) => `${escapeHtml(player.name)}: ${player.score} điểm`)
+      .join(' · ');
+    const playedAt = new Date(match.playedAt).toLocaleString('vi-VN');
+    return `<article class="match-history-entry">
+      <span>Trận ${match.matchNumber} · ${escapeHtml(gameModeLabels[match.gameMode] ?? match.gameMode)} · ${playedAt}</span>
+      <strong>${scores} · ${escapeHtml(match.winnerName)} +1</strong>
+    </article>`;
+  }).join('');
+  return `<div class="history-head"><h3>Lịch sử trận</h3><span class="guess-count">${history.length} TRẬN</span></div>
+    <div class="match-history-list">${entries || '<div class="match-history-empty">Chưa có trận thắng nào.</div>'}</div>`;
 }
 
 function renderLog() {
@@ -369,13 +384,10 @@ function renderModeHint(hint, revealedSkillHints = [], wrongGuessCount = 0, abil
     return `<section class="mode-hint"><div class="mode-hint-label">GỢI Ý EMOJI</div><div class="mode-emojis">${hint.emojis.map(escapeHtml).join(' ')}</div></section>`;
   }
   if (hint.kind === 'splash') {
-    const zoom = Math.max(1, 3 - wrongGuessCount / 3);
+    const zoom = Math.max(1, 6 - wrongGuessCount / 2);
     const cropX = Number.isFinite(hint.cropX) ? hint.cropX : 50;
     const cropY = Number.isFinite(hint.cropY) ? hint.cropY : 50;
     return `<section class="mode-hint"><div class="mode-hint-label">GỢI Ý SPLASH</div><div class="mode-splash-frame"><img class="mode-hint-image mode-splash" src="${escapeHtml(hint.imageUrl)}" style="--splash-x:${cropX}%;--splash-y:${cropY}%;--splash-zoom:${zoom}" alt="Gợi ý splash art của đối thủ"></div></section>`;
-  }
-  if (hint.kind === 'quote') {
-    return `<section class="mode-hint"><div class="mode-hint-label">CÂU GỢI Ý TỰ TẠO</div><p class="mode-quote">${escapeHtml(hint.text)}</p></section>`;
   }
   if (hint.kind === 'ability') {
     return renderSkillHints(revealedSkillHints.length ? revealedSkillHints : hint.abilities, 'GỢI Ý KỸ NĂNG', abilityColorRevealed);
@@ -467,6 +479,9 @@ function renderRoom() {
   let mainContent = '';
   if (roomState.phase === 'lobby') {
     const readyLabel = self?.ready ? 'Hủy sẵn sàng' : 'Sẵn sàng';
+    const lobbyModeOptions = Object.entries(gameModeLabels)
+      .map(([mode, label]) => `<option value="${escapeHtml(mode)}" ${roomState.gameMode === mode ? 'selected' : ''}>${escapeHtml(label)}</option>`)
+      .join('');
     const waitText = roomState.players.length < 2
       ? 'Gửi mã phòng cho đối thủ để cùng bắt đầu.'
       : self?.ready && opponent?.ready
@@ -487,6 +502,11 @@ function renderRoom() {
     mainContent = `<section class="lobby-pick">
       <h3>${isClassic ? 'Chọn tướng bí mật' : 'Sẵn sàng bắt đầu'}</h3>
       <p>${isClassic ? 'Đối thủ sẽ đoán tướng này. Lựa chọn chỉ hiển thị với bạn cho đến khi ván kết thúc.' : `Mode ${escapeHtml(gameModeLabel)} không cần chọn tướng bí mật.`}</p>
+      <div class="mode-setting">
+        <label class="field-label" for="lobby-game-mode">CHẾ ĐỘ CHƠI</label>
+        <select id="lobby-game-mode" class="text-input game-mode-select">${lobbyModeOptions}</select>
+        <small class="mode-setting-note">Đổi chế độ sẽ hủy trạng thái sẵn sàng và lựa chọn tướng hiện tại.</small>
+      </div>
       ${lobbyControls}
       <div class="lobby-wait">${waitText}</div>
     </section>`;
@@ -501,6 +521,12 @@ function renderRoom() {
         : roomState.hintAvailable
           ? 'Mở màu kỹ năng'
           : `Mở màu sau ${hintAttemptsRemaining} lượt đoán sai nữa`
+      : roomState.gameMode === 'emoji'
+        ? roomState.emojiHintsRemaining === 0
+          ? 'Đã mở đủ emoji'
+          : roomState.hintAvailable
+            ? 'Mở thêm 1 emoji'
+            : `Mở emoji sau ${hintAttemptsRemaining} lượt đoán sai nữa`
       : revealedSkillCount >= 4
         ? 'Đã mở đủ 4 kỹ năng'
         : roomState.hintAvailable
@@ -546,6 +572,7 @@ function renderRoom() {
         ${mainContent}
         <div class="history-head"><h3>Lịch sử đoán</h3><span class="guess-count">${roomState.log.length} LƯỢT</span></div>
         <div class="history-list">${renderLog()}</div>
+        ${renderMatchHistory()}
       </section>
       <aside class="side-stack">
         <section class="private-note-panel">
@@ -615,6 +642,14 @@ function renderRoom() {
 
   document.querySelector('#ready-button')?.addEventListener('click', () => {
     emitWithAck('room:ready', {});
+  });
+  document.querySelector('#lobby-game-mode')?.addEventListener('change', (event) => {
+    const select = event.currentTarget;
+    socket.emit('room:mode', { gameMode: select.value }, (response) => {
+      if (response?.ok) return;
+      showToast(response?.error ?? 'Đã xảy ra lỗi, hãy thử lại.');
+      if (select.isConnected) select.value = roomState.gameMode;
+    });
   });
   document.querySelector('#guess-button')?.addEventListener('click', submitGuess);
   document.querySelector('#hint-button')?.addEventListener('click', (event) => {

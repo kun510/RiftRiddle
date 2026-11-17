@@ -1,7 +1,11 @@
 import express from 'express';
 import { createServer } from 'node:http';
 import { randomInt, randomUUID } from 'node:crypto';
+import { mkdirSync } from 'node:fs';
 import { readFile } from 'node:fs/promises';
+import { DatabaseSync } from 'node:sqlite';
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { Server } from 'socket.io';
 import { buildClues } from './src/game.js';
 
@@ -11,12 +15,210 @@ const io = new Server(httpServer);
 const rooms = new Map();
 const alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 const timerDurations = new Set([0, 15, 30, 45, 60, 90, 120]);
-const gameModes = new Set(['classic', 'random', 'emoji', 'splash', 'quote', 'ability']);
+const gameModes = new Set(['classic', 'random', 'emoji', 'splash', 'ability']);
 let champions = [];
 let championById = new Map();
 let championMetadataById = new Map();
 const abilityHintsByChampionId = new Map();
+const splashSkinsByChampionId = new Map();
 let dataDragonVersion = '';
+const databasePath = process.env.RIFT_RIDDLE_DB_PATH
+  || fileURLToPath(new URL('./data/rift-riddle.sqlite', import.meta.url));
+mkdirSync(dirname(databasePath), { recursive: true });
+const database = new DatabaseSync(databasePath);
+database.exec(`
+  CREATE TABLE IF NOT EXISTS matchups (
+    player_one_key TEXT NOT NULL,
+    player_two_key TEXT NOT NULL,
+    player_one_name TEXT NOT NULL,
+    player_two_name TEXT NOT NULL,
+    player_one_score INTEGER NOT NULL DEFAULT 0,
+    player_two_score INTEGER NOT NULL DEFAULT 0,
+    PRIMARY KEY (player_one_key, player_two_key)
+  );
+  CREATE TABLE IF NOT EXISTS match_history (
+    id INTEGER PRIMARY KEY,
+    player_one_key TEXT NOT NULL,
+    player_one_name TEXT NOT NULL,
+    player_two_key TEXT NOT NULL,
+    player_two_name TEXT NOT NULL,
+    winner_key TEXT NOT NULL,
+    winner_name TEXT NOT NULL,
+    game_mode TEXT NOT NULL,
+    played_at INTEGER NOT NULL,
+    player_one_score INTEGER NOT NULL,
+    player_two_score INTEGER NOT NULL
+  );
+  CREATE INDEX IF NOT EXISTS match_history_players
+    ON match_history (player_one_key, player_two_key);
+`);
+const getMatchup = database.prepare('SELECT * FROM matchups WHERE player_one_key = ? AND player_two_key = ?');
+const saveMatchup = database.prepare(`
+  INSERT INTO matchups (
+    player_one_key, player_two_key, player_one_name, player_two_name, player_one_score, player_two_score
+  ) VALUES (?, ?, ?, ?, ?, ?)
+  ON CONFLICT(player_one_key, player_two_key) DO UPDATE SET
+    player_one_score = player_one_score + excluded.player_one_score,
+    player_two_score = player_two_score + excluded.player_two_score
+`);
+const addMatchupWin = database.prepare(`
+  UPDATE matchups
+  SET player_one_score = player_one_score + ?,
+      player_two_score = player_two_score + ?
+  WHERE player_one_key = ? AND player_two_key = ?
+  RETURNING *
+`);
+const saveMatch = database.prepare(`
+  INSERT INTO match_history (
+    player_one_key, player_one_name, player_two_key, player_two_name,
+    winner_key, winner_name, game_mode, played_at, player_one_score, player_two_score
+  ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+`);
+const getPairMatchHistory = database.prepare(`
+  SELECT
+    id AS matchNumber,
+    player_one_name AS playerOneName,
+    player_two_name AS playerTwoName,
+    winner_name AS winnerName,
+    game_mode AS gameMode,
+    played_at AS playedAt,
+    player_one_score AS playerOneScore,
+    player_two_score AS playerTwoScore
+  FROM match_history
+  WHERE (player_one_key = ? AND player_two_key = ?)
+     OR (player_one_key = ? AND player_two_key = ?)
+  ORDER BY id DESC
+  LIMIT 50
+`);
+
+function normalizePlayerName(name) {
+  return name.trim().normalize('NFC').replace(/\s+/g, ' ').toLocaleLowerCase('vi-VN');
+}
+
+function orderedPlayerKeys(first, second) {
+  return first < second ? [first, second] : [second, first];
+}
+
+function getOrCreateMatchup(firstPlayer, secondPlayer) {
+  const [playerOneKey, playerTwoKey] = orderedPlayerKeys(firstPlayer.scoreId, secondPlayer.scoreId);
+  const playerOne = firstPlayer.scoreId === playerOneKey ? firstPlayer : secondPlayer;
+  const playerTwo = firstPlayer.scoreId === playerTwoKey ? firstPlayer : secondPlayer;
+  saveMatchup.run(playerOneKey, playerTwoKey, playerOne.name, playerTwo.name, 0, 0);
+  return getMatchup.get(playerOneKey, playerTwoKey);
+}
+
+function getMatchHistory(playerOneId, playerTwoId) {
+  if (!playerTwoId) return [];
+  return getPairMatchHistory.all(playerOneId, playerTwoId, playerTwoId, playerOneId)
+    .map((match) => ({
+      matchNumber: match.matchNumber,
+      winnerName: match.winnerName,
+      gameMode: match.gameMode,
+      playedAt: match.playedAt,
+      scores: [
+        { name: match.playerOneName, score: match.playerOneScore },
+        { name: match.playerTwoName, score: match.playerTwoScore },
+      ],
+    }));
+}
+
+function recordMatch(room, winner) {
+  const [firstPlayer, secondPlayer] = [...room.players.values()];
+  const [playerOneKey, playerTwoKey] = orderedPlayerKeys(firstPlayer.scoreId, secondPlayer.scoreId);
+  const playerOne = firstPlayer.scoreId === playerOneKey ? firstPlayer : secondPlayer;
+  const playerTwo = firstPlayer.scoreId === playerTwoKey ? firstPlayer : secondPlayer;
+  const winnerIsPlayerOne = winner.scoreId === playerOneKey;
+  const playedAt = Date.now();
+  database.exec('BEGIN IMMEDIATE');
+  try {
+    const updatedMatchup = addMatchupWin.get(
+      winnerIsPlayerOne ? 1 : 0,
+      winnerIsPlayerOne ? 0 : 1,
+      playerOneKey,
+      playerTwoKey,
+    );
+    if (!updatedMatchup) throw new Error(`Không tìm thấy bảng điểm của ${playerOne.name} và ${playerTwo.name}.`);
+    saveMatch.run(
+      playerOneKey,
+      playerOne.name,
+      playerTwoKey,
+      playerTwo.name,
+      winner.scoreId,
+      winner.name,
+      room.gameMode,
+      playedAt,
+      updatedMatchup.player_one_score,
+      updatedMatchup.player_two_score,
+    );
+    database.exec('COMMIT');
+  } catch (error) {
+    database.exec('ROLLBACK');
+    throw error;
+  }
+  const matchup = getMatchup.get(playerOneKey, playerTwoKey);
+  room.scores.set(playerOneKey, { id: playerOneKey, name: playerOne.name, score: matchup.player_one_score });
+  room.scores.set(playerTwoKey, { id: playerTwoKey, name: playerTwo.name, score: matchup.player_two_score });
+  room.matchHistory = getMatchHistory(playerOneKey, playerTwoKey);
+}
+
+function migrateRoomRecords() {
+  const hasRoomRecords = database.prepare(
+    "SELECT 1 FROM sqlite_master WHERE type = 'table' AND name = 'room_records'",
+  ).get();
+  if (!hasRoomRecords) return;
+
+  const legacyRecords = database.prepare('SELECT scores_json, match_history_json FROM room_records').all();
+  database.exec('BEGIN IMMEDIATE');
+  try {
+    for (const record of legacyRecords) {
+      const players = JSON.parse(record.scores_json);
+      if (players.length === 2) {
+        const [first, second] = players;
+        const firstKey = normalizePlayerName(first.name);
+        const secondKey = normalizePlayerName(second.name);
+        const [playerOneKey, playerTwoKey] = orderedPlayerKeys(firstKey, secondKey);
+        const playerOne = firstKey === playerOneKey ? first : second;
+        const playerTwo = firstKey === playerTwoKey ? first : second;
+        saveMatchup.run(
+          playerOneKey,
+          playerTwoKey,
+          playerOne.name,
+          playerTwo.name,
+          playerOne.score,
+          playerTwo.score,
+        );
+      }
+
+      for (const match of JSON.parse(record.match_history_json)) {
+        if (!Array.isArray(match.scores) || match.scores.length !== 2) continue;
+        const [first, second] = match.scores;
+        const firstKey = normalizePlayerName(first.name);
+        const secondKey = normalizePlayerName(second.name);
+        const [playerOneKey, playerTwoKey] = orderedPlayerKeys(firstKey, secondKey);
+        const playerOne = firstKey === playerOneKey ? first : second;
+        const playerTwo = firstKey === playerTwoKey ? second : first;
+        saveMatch.run(
+          playerOneKey,
+          playerOne.name,
+          playerTwoKey,
+          playerTwo.name,
+          normalizePlayerName(match.winnerName),
+          match.winnerName,
+          match.gameMode,
+          match.playedAt,
+          playerOne.score,
+          playerTwo.score,
+        );
+      }
+    }
+    database.exec('DROP TABLE room_records; COMMIT');
+  } catch (error) {
+    database.exec('ROLLBACK');
+    throw error;
+  }
+}
+migrateRoomRecords();
+database.exec('DROP TABLE IF EXISTS player_scores');
 
 app.use(express.static('public'));
 app.get('/api/champions', (_req, res) => {
@@ -39,6 +241,7 @@ function publicState(room, selfId) {
     name: player.name,
     ready: player.ready,
     isSelf: id === selfId,
+    score: room.scores.get(player.scoreId).score,
     ownChampion:
       id === selfId && player.targetId ? championById.get(player.targetId)?.name ?? null : null,
   }));
@@ -53,19 +256,30 @@ function publicState(room, selfId) {
     log: room.log,
     chatMessages: room.chatMessages,
     winnerId: room.winnerId,
+    matchHistory: room.matchHistory,
   };
 
   if (room.phase === 'playing') {
-    state.modeHint = room.gameMode === 'classic' ? null : room.sharedModeHint;
+    state.modeHint = room.gameMode === 'classic'
+      ? null
+      : room.gameMode === 'emoji'
+        ? { ...room.sharedModeHint, emojis: room.sharedModeHint.emojis.slice(0, room.revealedEmojiCount) }
+        : room.sharedModeHint;
     if (room.gameMode !== 'classic') {
       const wrongGuessCount = room.log.filter((entry) => entry.championId && !entry.isCorrect).length;
       state.revealedSkillHints = room.revealedSkillHints;
       if (room.gameMode === 'ability') state.abilityColorRevealed = room.abilityColorRevealed;
+      if (room.gameMode === 'emoji') {
+        state.emojiHintsRemaining = Math.max(0, room.sharedModeHint.emojis.length - room.revealedEmojiCount);
+      }
       state.wrongGuessCount = wrongGuessCount;
       state.nextHintAt = room.hintNextAt;
-      state.hintAvailable = wrongGuessCount >= room.hintNextAt && (room.gameMode === 'ability'
+      const hasMoreHints = room.gameMode === 'ability'
         ? !room.abilityColorRevealed
-        : room.revealedSkillHints.length < 4);
+        : room.gameMode === 'emoji'
+          ? room.revealedEmojiCount < room.sharedModeHint.emojis.length
+          : room.revealedSkillHints.length < 4;
+      state.hintAvailable = wrongGuessCount >= room.hintNextAt && hasMoreHints;
     }
   }
   if (room.phase === 'finished') {
@@ -102,8 +316,9 @@ function resetMatch(room) {
   room.phase = 'lobby';
   room.pendingHintId = null;
   room.revealedSkillHints = [];
+  room.revealedEmojiCount = 0;
   room.abilityColorRevealed = false;
-  room.hintNextAt = room.gameMode === 'ability' ? 6 : 7;
+  room.hintNextAt = room.gameMode === 'ability' ? 6 : room.gameMode === 'emoji' ? 3 : 7;
   room.pendingGuessId = null;
   room.turnPlayerId = null;
   room.winnerId = null;
@@ -219,6 +434,41 @@ async function getAbilityModeHint(champion) {
   }
 }
 
+async function getSplashSkinNumbers(champion) {
+  if (splashSkinsByChampionId.has(champion.id)) {
+    return splashSkinsByChampionId.get(champion.id);
+  }
+
+  const pendingSkins = (async () => {
+    const response = await fetch(
+      `https://ddragon.leagueoflegends.com/cdn/${encodeURIComponent(dataDragonVersion)}/data/en_US/champion/${encodeURIComponent(champion.id)}.json`,
+      { signal: AbortSignal.timeout(6000) },
+    );
+    if (!response.ok) throw new Error(`Data Dragon trả về HTTP ${response.status}`);
+    const payload = await response.json();
+    const skins = payload.data?.[champion.id]?.skins;
+    if (!Array.isArray(skins)) {
+      throw new Error(`Data Dragon thiếu dữ liệu trang phục cho ${champion.name}.`);
+    }
+
+    const skinNumbers = skins
+      .map((skin) => skin.num)
+      .filter((skinNumber) => Number.isSafeInteger(skinNumber) && skinNumber > 0);
+    if (!skinNumbers.length) {
+      throw new Error(`Data Dragon thiếu skin thay thế cho ${champion.name}.`);
+    }
+    return skinNumbers;
+  })();
+  splashSkinsByChampionId.set(champion.id, pendingSkins);
+
+  try {
+    return await pendingSkins;
+  } catch (error) {
+    splashSkinsByChampionId.delete(champion.id);
+    throw error;
+  }
+}
+
 async function getModeHint(championId, gameMode) {
   if (gameMode === 'classic' || gameMode === 'random') return null;
   const champion = championById.get(championId);
@@ -261,26 +511,13 @@ async function getModeHint(championId, gameMode) {
   }
 
   if (gameMode === 'splash') {
+    const skinNumbers = await getSplashSkinNumbers(champion);
     return {
       kind: 'splash',
-      imageUrl: `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${encodeURIComponent(champion.id)}_0.jpg`,
-      cropX: randomInt(20, 81),
-      cropY: randomInt(20, 81),
+      imageUrl: `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${encodeURIComponent(champion.id)}_${skinNumbers[randomInt(skinNumbers.length)]}.jpg`,
+      cropX: randomInt(2) * 100,
+      cropY: randomInt(2) * 100,
     };
-  }
-
-  if (gameMode === 'quote') {
-    const roleLabels = {
-      Assassin: 'sát thủ',
-      Fighter: 'đấu sĩ',
-      Mage: 'pháp sư',
-      Marksman: 'xạ thủ',
-      Support: 'hỗ trợ',
-      Tank: 'đỡ đòn',
-    };
-    const role = champion.tags?.map((tag) => roleLabels[tag]).find(Boolean) ?? 'chiến binh';
-    const region = metadata.regions?.[0] || 'Runeterra';
-    return { kind: 'quote', text: `Một ${role} đến từ ${region} đang chờ bạn gọi đúng tên.` };
   }
 
   if (gameMode === 'ability') {
@@ -299,16 +536,21 @@ io.on('connection', (socket) => {
     if (!timerDurations.has(timerSeconds)) return sendError(ack, 'Thời gian mỗi lượt không hợp lệ.');
     if (!gameModes.has(gameMode)) return sendError(ack, 'Chế độ chơi không hợp lệ.');
 
+    const scoreId = normalizePlayerName(playerName);
     const room = {
       code: makeRoomCode(),
-      players: new Map([[socket.id, { name: playerName, ready: false, targetId: null, lastChatAt: 0 }]]),
+      players: new Map([[socket.id, { name: playerName, scoreId, ready: false, targetId: null, lastChatAt: 0 }]]),
+      scores: new Map([[scoreId, { id: scoreId, name: playerName, score: 0 }]]),
+      matchHistory: [],
       phase: 'lobby',
       gameMode,
+      nextStarterScoreId: scoreId,
       sharedTargetId: null,
       sharedModeHint: null,
       revealedSkillHints: [],
+      revealedEmojiCount: 0,
       abilityColorRevealed: false,
-      hintNextAt: 7,
+      hintNextAt: gameMode === 'ability' ? 6 : gameMode === 'emoji' ? 3 : 7,
       pendingHintId: null,
       pendingGuessId: null,
       starting: false,
@@ -331,16 +573,45 @@ io.on('connection', (socket) => {
     if (socket.data.roomCode) return sendError(ack, 'Bạn đang ở trong một phòng.');
     const playerName = cleanName(name);
     const roomCode = typeof code === 'string' ? code.trim().toUpperCase() : '';
-    const room = rooms.get(roomCode);
     if (!playerName) return sendError(ack, 'Hãy nhập tên hiển thị của bạn.');
+    const room = rooms.get(roomCode);
     if (!room) return sendError(ack, 'Không tìm thấy phòng. Hãy kiểm tra lại mã.');
     if (room.players.size >= 2) return sendError(ack, 'Phòng đã đủ 2 người chơi.');
-
+    const scoreId = normalizePlayerName(playerName);
+    if ([...room.players.values()].some((player) => player.scoreId === scoreId)) {
+      return sendError(ack, 'Hai người chơi cần có tên khác nhau.');
+    }
     clearRoomExpiry(room);
-    room.players.set(socket.id, { name: playerName, ready: false, targetId: null, lastChatAt: 0 });
+    room.players.set(socket.id, { name: playerName, scoreId, ready: false, targetId: null, lastChatAt: 0 });
+    const [playerOne, playerTwo] = [...room.players.values()];
+    const matchup = getOrCreateMatchup(playerOne, playerTwo);
+    const firstScore = playerOne.scoreId === matchup.player_one_key
+      ? matchup.player_one_score
+      : matchup.player_two_score;
+    const secondScore = playerTwo.scoreId === matchup.player_two_key
+      ? matchup.player_two_score
+      : matchup.player_one_score;
+    room.scores.set(playerOne.scoreId, { id: playerOne.scoreId, name: playerOne.name, score: firstScore });
+    room.scores.set(playerTwo.scoreId, { id: playerTwo.scoreId, name: playerTwo.name, score: secondScore });
+    room.matchHistory = getMatchHistory(matchup.player_one_key, matchup.player_two_key);
     socket.data.roomCode = room.code;
     socket.join(room.code);
     ack?.({ ok: true, room: publicState(room, socket.id) });
+    broadcastState(room);
+  });
+
+  socket.on('room:mode', ({ gameMode } = {}, ack) => {
+    const room = rooms.get(socket.data.roomCode);
+    if (!room || !room.players.has(socket.id)) return sendError(ack, 'Bạn không ở trong phòng.');
+    if (room.phase !== 'lobby' || room.starting) {
+      return sendError(ack, 'Chỉ có thể đổi chế độ chơi khi phòng đang chờ.');
+    }
+    if (!gameModes.has(gameMode)) return sendError(ack, 'Chế độ chơi không hợp lệ.');
+    if (room.gameMode === gameMode) return ack?.({ ok: true });
+
+    room.gameMode = gameMode;
+    resetMatch(room);
+    ack?.({ ok: true });
     broadcastState(room);
   });
 
@@ -417,15 +688,18 @@ io.on('connection', (socket) => {
         room.revealedSkillHints = sharedModeHint?.kind === 'ability'
           ? [...sharedModeHint.abilities]
           : [];
+        room.revealedEmojiCount = sharedModeHint?.kind === 'emoji' ? 1 : 0;
         room.abilityColorRevealed = false;
-        room.hintNextAt = room.gameMode === 'ability' ? 6 : 7;
+        room.hintNextAt = room.gameMode === 'ability' ? 6 : room.gameMode === 'emoji' ? 3 : 7;
         room.pendingHintId = null;
         room.starting = false;
       }
 
       room.phase = 'playing';
       room.log = [];
-      const firstPlayerId = [...room.players.keys()][randomInt(room.players.size)];
+      const firstPlayerId = [...room.players.entries()]
+        .find(([, candidate]) => candidate.scoreId === room.nextStarterScoreId)?.[0]
+        ?? room.players.keys().next().value;
       startTurn(room, firstPlayerId);
     }
 
@@ -447,6 +721,16 @@ io.on('connection', (socket) => {
     if (room.gameMode === 'ability') {
       if (room.abilityColorRevealed) return sendError(ack, 'Màu kỹ năng đã được mở.');
       room.abilityColorRevealed = true;
+      ack?.({ ok: true });
+      broadcastState(room);
+      return;
+    }
+    if (room.gameMode === 'emoji') {
+      if (room.revealedEmojiCount >= room.sharedModeHint.emojis.length) {
+        return sendError(ack, 'Đã mở đủ emoji.');
+      }
+      room.revealedEmojiCount += 1;
+      room.hintNextAt = wrongGuessCount + 3;
       ack?.({ ok: true });
       broadcastState(room);
       return;
@@ -536,9 +820,17 @@ io.on('connection', (socket) => {
     });
 
     if (isCorrect) {
+      try {
+        recordMatch(room, player);
+      } catch (error) {
+        room.log.pop();
+        console.error(`Không lưu được điểm trận đấu trong phòng ${room.code}:`, error);
+        return sendError(ack, 'Không lưu được điểm trận đấu. Hãy thử lại.');
+      }
       clearTurnTimer(room);
       room.phase = 'finished';
       room.winnerId = socket.id;
+      room.nextStarterScoreId = player.scoreId;
       room.turnPlayerId = null;
     } else {
       startTurn(room, opponentId);
