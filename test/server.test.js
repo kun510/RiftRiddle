@@ -95,7 +95,7 @@ test('two players can create a room, alternate guesses, and finish a round', { t
 
   const annie = champions.find((champion) => champion.name === 'Annie');
   const ashe = champions.find((champion) => champion.name === 'Ashe');
-  const wrongGuess = champions.find((champion) => champion.id !== annie.id && champion.id !== ashe.id);
+  const wrongGuess = champions.find((champion) => champion.id === 'Ahri');
   assert.ok(annie && ashe && wrongGuess, 'catalogue should include champions for a round');
 
   const first = await connectClient(url);
@@ -137,6 +137,11 @@ test('two players can create a room, alternate guesses, and finish a round', { t
   await emitAck(otherClient, 'room:guess', { championId: wrongGuess.id });
   const wrongResult = await afterWrongGuess;
   assert.equal(wrongResult.log[1].isCorrect, false);
+  assert.deepEqual(wrongResult.log[1].clues[2], {
+    label: 'Chủng loài',
+    status: 'wrong',
+    value: 'Vastayan',
+  });
   assert.equal(wrongResult.turnPlayerId, firstTurnClient.id);
   await assert.rejects(emitAck(firstTurnClient, 'room:guess', { championId: wrongGuess.id }), /đã được đoán trong ván đấu/);
 

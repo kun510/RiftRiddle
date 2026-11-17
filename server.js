@@ -15,7 +15,6 @@ const gameModes = new Set(['classic', 'random', 'emoji', 'splash', 'quote', 'abi
 let champions = [];
 let championById = new Map();
 let championMetadataById = new Map();
-const universeDetailsById = new Map();
 const abilityHintsByChampionId = new Map();
 let dataDragonVersion = '';
 
@@ -177,50 +176,10 @@ function startTurn(room, playerId) {
 }
 
 async function getChampionDetails(championId) {
-  if (universeDetailsById.has(championId)) return universeDetailsById.get(championId);
   const champion = championById.get(championId);
   const metadata = championMetadataById.get(championId);
   if (!champion || !metadata) throw new Error('Không tìm thấy dữ liệu cho vị tướng này.');
-
-  const slug = champion.id === 'MonkeyKing' ? 'monkeyking' : champion.id.toLowerCase();
-  const pendingDetails = (async () => {
-    try {
-      const response = await fetch(
-        `https://universe-meeps.leagueoflegends.com/v1/en_us/champions/${slug}/index.json`,
-        { signal: AbortSignal.timeout(4000) },
-      );
-      if (!response.ok) throw new Error(`Riot Universe trả về HTTP ${response.status}`);
-      const data = await response.json();
-      if (data.champion?.name !== champion.name) {
-        throw new Error(`Không khớp dữ liệu thế giới cho ${champion.name}.`);
-      }
-
-      const species = Array.isArray(data.champion.races)
-        ? data.champion.races.map((race) => race.name).filter(Boolean)
-        : [];
-      return {
-        ...metadata,
-        species: species.length ? species : ['Human'],
-      };
-    } catch (error) {
-      console.warn(`Chưa tải được chủng loài của ${champion.name}; manh mối này sẽ hiện là chưa rõ:`, error);
-      return {
-        ...metadata,
-        species: [],
-      };
-    }
-  })();
-
-  universeDetailsById.set(championId, pendingDetails);
-  try {
-    const details = await pendingDetails;
-    if (details.species.length) universeDetailsById.set(championId, details);
-    else universeDetailsById.delete(championId);
-    return details;
-  } catch (error) {
-    universeDetailsById.delete(championId);
-    throw error;
-  }
+  return metadata;
 }
 
 async function getAbilityModeHint(champion) {

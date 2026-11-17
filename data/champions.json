@@ -15,7 +15,9 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Darkin"
+        ],
         "resource": "Blood Well",
         "rangeType": "Melee",
         "regions": [
@@ -38,7 +40,9 @@
         "positions": [
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Vastayan"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -61,7 +65,9 @@
           "Top",
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Human"
+        ],
         "resource": "Energy",
         "rangeType": "Melee",
         "regions": [
@@ -84,7 +90,9 @@
         "positions": [
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Human"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -107,7 +115,9 @@
         "positions": [
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Minotaur"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -129,7 +139,9 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Human"
+        ],
         "resource": "Energy",
         "rangeType": "Melee",
         "regions": [
@@ -152,7 +164,10 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Undead",
+          "Yordle"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -175,7 +190,10 @@
         "positions": [
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Spirit",
+          "God"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -197,7 +215,10 @@
         "positions": [
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magicborn"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -220,7 +241,10 @@
         "positions": [
           "Bottom"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Spiritualist"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -244,7 +268,10 @@
           "Bottom",
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Iceborn"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -267,7 +294,10 @@
         "positions": [
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Celestial",
+          "Dragon"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -290,7 +320,9 @@
           "Top",
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Vastayan"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -313,7 +345,9 @@
         "positions": [
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "God-Warrior"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -336,7 +370,9 @@
         "positions": [
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Celestial"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -358,7 +394,9 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Void-Being"
+        ],
         "resource": "Manaless",
         "rangeType": "Melee",
         "regions": [
@@ -381,7 +419,9 @@
         "positions": [
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Golem"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -404,7 +444,10 @@
           "Jungle",
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magically Altered"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -427,7 +470,10 @@
         "positions": [
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Iceborn"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -449,7 +495,9 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Golem"
+        ],
         "resource": "Fury",
         "rangeType": "Melee",
         "regions": [
@@ -471,7 +519,9 @@
         "positions": [
           "Bottom"
         ],
-        "species": [],
+        "species": [
+          "Human"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -493,7 +543,10 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Cyborg"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -515,7 +568,10 @@
         "positions": [
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magically Altered"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -538,7 +594,9 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Void-Being"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -560,7 +618,9 @@
         "positions": [
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Yordle"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -583,7 +643,9 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Human"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -607,7 +669,10 @@
           "Jungle",
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Aspect"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -629,7 +694,9 @@
         "positions": [
           "Bottom"
         ],
-        "species": [],
+        "species": [
+          "Human"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -652,7 +719,10 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Chemically Altered"
+        ],
         "resource": "None",
         "rangeType": "Melee",
         "regions": [
@@ -676,7 +746,9 @@
           "Jungle",
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Human"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -699,7 +771,10 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magically Altered"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -722,7 +797,10 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Demon",
+          "Spirit"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -745,7 +823,10 @@
         "positions": [
           "Bottom"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magicborn"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -768,7 +849,10 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Demon",
+          "Spirit"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -791,7 +875,9 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Human"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -814,7 +900,9 @@
         "positions": [
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Yordle"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -837,7 +925,9 @@
         "positions": [
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Golem"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -859,7 +949,9 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Human"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -882,7 +974,9 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Human"
+        ],
         "resource": "None",
         "rangeType": "Melee",
         "regions": [
@@ -905,7 +999,9 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Yordle"
+        ],
         "resource": "Rage",
         "rangeType": "Melee",
         "regions": [
@@ -928,7 +1024,10 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Iceborn"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -950,7 +1049,9 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Human"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -972,7 +1073,10 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magically Altered"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -995,7 +1099,9 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Undead"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -1018,7 +1124,9 @@
         "positions": [
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Yordle"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -1041,7 +1149,10 @@
           "Mid",
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magicborn"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -1064,7 +1175,10 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Spiritualist"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -1088,7 +1202,10 @@
           "Top",
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Spiritualist"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -1111,7 +1228,10 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magically Altered"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -1134,7 +1254,10 @@
         "positions": [
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Spirit",
+          "God"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -1157,7 +1280,9 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Human"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -1181,7 +1306,9 @@
           "Top",
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Unknown"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -1204,7 +1331,9 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Human"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -1227,7 +1356,10 @@
         "positions": [
           "Bottom"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Spiritualist"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -1249,7 +1381,10 @@
         "positions": [
           "Bottom"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Chemically Altered"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -1271,7 +1406,10 @@
         "positions": [
           "Bottom"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Void-Being"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -1293,7 +1431,9 @@
         "positions": [
           "Bottom"
         ],
-        "species": [],
+        "species": [
+          "Undead"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -1317,7 +1457,10 @@
           "Mid",
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Spiritualist"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -1339,7 +1482,9 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Undead"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -1362,7 +1507,10 @@
         "positions": [
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Void-Being"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -1385,7 +1533,9 @@
         "positions": [
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Human"
+        ],
         "resource": "None",
         "rangeType": "Melee",
         "regions": [
@@ -1408,7 +1558,11 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magically Altered",
+          "Aspect"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -1430,7 +1584,11 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Darkin",
+          "Human",
+          "Magically Altered"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -1453,7 +1611,9 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Yordle"
+        ],
         "resource": "Energy",
         "rangeType": "Ranged",
         "regions": [
@@ -1476,7 +1636,9 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Void-Being"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -1498,7 +1660,10 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Spirit",
+          "God"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -1521,7 +1686,9 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Yordle"
+        ],
         "resource": "Courage",
         "rangeType": "Melee",
         "regions": [
@@ -1544,7 +1711,9 @@
         "positions": [
           "Bottom"
         ],
-        "species": [],
+        "species": [
+          "Void-Being"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -1566,7 +1735,9 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Human"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -1589,7 +1760,10 @@
         "positions": [
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magically Altered"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -1612,7 +1786,10 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Spiritualist"
+        ],
         "resource": "Energy",
         "rangeType": "Melee",
         "regions": [
@@ -1635,7 +1812,10 @@
         "positions": [
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Aspect"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -1657,7 +1837,9 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Spirit"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -1679,7 +1861,10 @@
         "positions": [
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Iceborn"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -1701,7 +1886,9 @@
         "positions": [
           "Unknown"
         ],
-        "species": [],
+        "species": [
+          "Human"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -1723,7 +1910,9 @@
         "positions": [
           "Bottom"
         ],
-        "species": [],
+        "species": [
+          "Human"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -1746,7 +1935,9 @@
         "positions": [
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Yordle"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -1770,7 +1961,10 @@
           "Mid",
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magicborn"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -1793,7 +1987,9 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Golem"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -1816,7 +2012,10 @@
         "positions": [
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Void-Being"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -1839,7 +2038,9 @@
         "positions": [
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Spirit"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -1862,7 +2063,10 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Spiritualist"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -1885,7 +2089,10 @@
           "Mid",
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magically Altered"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -1907,7 +2114,10 @@
         "positions": [
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magicborn"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -1929,7 +2139,9 @@
         "positions": [
           "Bottom"
         ],
-        "species": [],
+        "species": [
+          "Human"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -1952,7 +2164,9 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Vastayan"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -1974,7 +2188,9 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Revenant"
+        ],
         "resource": "Shield",
         "rangeType": "Melee",
         "regions": [
@@ -1997,7 +2213,11 @@
         "positions": [
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magically Altered",
+          "Aspect"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -2019,7 +2239,10 @@
         "positions": [
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Dog",
+          "Darkin"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -2042,7 +2265,9 @@
         "positions": [
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Vastayan"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -2065,7 +2290,9 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "God-Warrior"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -2088,7 +2315,9 @@
         "positions": [
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Revenant"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -2111,7 +2340,9 @@
           "Mid",
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Vastayan"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -2134,7 +2365,10 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Spiritualist"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -2156,7 +2390,10 @@
         "positions": [
           "Bottom"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magically Altered"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -2179,7 +2416,10 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Demon",
+          "Spirit"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -2202,7 +2442,10 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Yeti"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -2225,7 +2468,10 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Iceborn"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -2248,7 +2494,9 @@
         "positions": [
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Golem"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -2271,7 +2519,10 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Spirit",
+          "God"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -2295,7 +2546,10 @@
           "Top",
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Aspect"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -2319,7 +2573,9 @@
           "Top",
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Yordle"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -2341,7 +2597,9 @@
         "positions": [
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Revenant"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -2363,7 +2621,10 @@
         "positions": [
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magicborn"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -2386,7 +2647,9 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Human"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -2409,7 +2672,9 @@
         "positions": [
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Vastayan"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -2432,7 +2697,9 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Unknown"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -2454,7 +2721,9 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Void-Being"
+        ],
         "resource": "Rage",
         "rangeType": "Melee",
         "regions": [
@@ -2476,7 +2745,11 @@
         "positions": [
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magicborn",
+          "Magically Altered"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -2498,7 +2771,10 @@
         "positions": [
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Chemically Altered"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -2521,7 +2797,9 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "God-Warrior"
+        ],
         "resource": "Fury",
         "rangeType": "Melee",
         "regions": [
@@ -2544,7 +2822,9 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Vastayan"
+        ],
         "resource": "Ferocity",
         "rangeType": "Melee",
         "regions": [
@@ -2567,7 +2847,9 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Human"
+        ],
         "resource": "None",
         "rangeType": "Melee",
         "regions": [
@@ -2590,7 +2872,9 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Yordle"
+        ],
         "resource": "Heat",
         "rangeType": "Melee",
         "regions": [
@@ -2613,7 +2897,10 @@
         "positions": [
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magically Altered"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -2635,7 +2922,9 @@
         "positions": [
           "Bottom"
         ],
-        "species": [],
+        "species": [
+          "Human"
+        ],
         "resource": "Mana",
         "rangeType": "Melee / Ranged",
         "regions": [
@@ -2658,7 +2947,10 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Iceborn"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -2682,7 +2974,10 @@
           "Bottom",
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Undead"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -2705,7 +3000,10 @@
           "Bottom",
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magicborn"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -2727,7 +3025,10 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Vastayan"
+        ],
         "resource": "Grit",
         "rangeType": "Melee",
         "regions": [
@@ -2749,7 +3050,9 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Spirit"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -2772,7 +3075,10 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Spiritualist"
+        ],
         "resource": "Energy",
         "rangeType": "Melee",
         "regions": [
@@ -2795,7 +3101,10 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Dragon",
+          "Magically Altered"
+        ],
         "resource": "Fury",
         "rangeType": "Melee",
         "regions": [
@@ -2818,7 +3127,10 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Chemically Altered"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -2841,7 +3153,9 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Revenant"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -2863,7 +3177,9 @@
         "positions": [
           "Bottom"
         ],
-        "species": [],
+        "species": [
+          "Human"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -2886,7 +3202,9 @@
           "Top",
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Brackern"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -2908,7 +3226,9 @@
         "positions": [
           "Bottom"
         ],
-        "species": [],
+        "species": [
+          "Dragon"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -2931,7 +3251,10 @@
         "positions": [
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magicborn"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -2954,7 +3277,9 @@
         "positions": [
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Celestial"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -2977,7 +3302,10 @@
         "positions": [
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magically Altered"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -3000,7 +3328,10 @@
         "positions": [
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magicborn"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -3023,7 +3354,10 @@
         "positions": [
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magicborn"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -3046,7 +3380,10 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Demon",
+          "Spirit"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -3069,7 +3406,10 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magicborn"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -3093,7 +3433,9 @@
           "Mid",
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Human"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -3116,7 +3458,10 @@
         "positions": [
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Aspect"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -3138,7 +3483,9 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Yordle"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -3161,7 +3508,9 @@
         "positions": [
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Undead"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -3184,7 +3533,9 @@
         "positions": [
           "Bottom"
         ],
-        "species": [],
+        "species": [
+          "Yordle"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -3207,7 +3558,10 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Troll",
+          "Iceborn"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -3230,7 +3584,10 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magically Altered"
+        ],
         "resource": "Fury",
         "rangeType": "Melee",
         "regions": [
@@ -3253,7 +3610,10 @@
           "Mid",
           "Bottom"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magicborn"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -3276,7 +3636,10 @@
         "positions": [
           "Bottom"
         ],
-        "species": [],
+        "species": [
+          "Rat",
+          "Chemically Altered"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -3299,7 +3662,10 @@
           "Top",
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Spiritualist"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -3322,7 +3688,11 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Chemically Altered",
+          "Cyborg"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -3345,7 +3715,10 @@
         "positions": [
           "Bottom"
         ],
-        "species": [],
+        "species": [
+          "Darkin",
+          "Human"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -3368,7 +3741,9 @@
         "positions": [
           "Bottom"
         ],
-        "species": [],
+        "species": [
+          "Human"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -3390,7 +3765,9 @@
         "positions": [
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Yordle"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -3412,7 +3789,9 @@
         "positions": [
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Void-Being"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -3434,7 +3813,9 @@
         "positions": [
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Yordle"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -3457,7 +3838,9 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Human"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -3479,7 +3862,9 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Undead"
+        ],
         "resource": "None",
         "rangeType": "Melee",
         "regions": [
@@ -3501,7 +3886,10 @@
         "positions": [
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Cyborg"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -3524,7 +3912,10 @@
         "positions": [
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magically Altered"
+        ],
         "resource": "Crimson Rush",
         "rangeType": "Ranged",
         "regions": [
@@ -3547,7 +3938,10 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Spirit",
+          "God"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -3570,7 +3964,11 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Chemically Altered",
+          "Cyborg"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -3593,7 +3991,9 @@
         "positions": [
           "Bottom"
         ],
-        "species": [],
+        "species": [
+          "Vastayan"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -3617,7 +4017,9 @@
           "Mid",
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Baccai"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -3640,7 +4042,9 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Human"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -3665,7 +4069,10 @@
           "Mid",
           "Bottom"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magicborn"
+        ],
         "resource": "Flow",
         "rangeType": "Melee",
         "regions": [
@@ -3688,7 +4095,10 @@
           "Top",
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magically Altered"
+        ],
         "resource": "Flow",
         "rangeType": "Melee",
         "regions": [
@@ -3711,7 +4121,10 @@
         "positions": [
           "Top"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magically Altered"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -3733,7 +4146,10 @@
         "positions": [
           "Unknown"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Spiritualist"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -3756,7 +4172,10 @@
         "positions": [
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Cat",
+          "Magically Altered"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -3778,7 +4197,10 @@
         "positions": [
           "Unknown"
         ],
-        "species": [],
+        "species": [
+          "Darkin",
+          "Human"
+        ],
         "resource": "Mana",
         "rangeType": "Melee",
         "regions": [
@@ -3801,7 +4223,9 @@
         "positions": [
           "Jungle"
         ],
-        "species": [],
+        "species": [
+          "Golem"
+        ],
         "resource": "None",
         "rangeType": "Melee",
         "regions": [
@@ -3824,7 +4248,10 @@
         "positions": [
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magically Altered"
+        ],
         "resource": "Energy",
         "rangeType": "Melee",
         "regions": [
@@ -3846,7 +4273,10 @@
         "positions": [
           "Bottom"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magicborn"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -3868,7 +4298,9 @@
         "positions": [
           "Bottom"
         ],
-        "species": [],
+        "species": [
+          "Yordle"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -3891,7 +4323,10 @@
         "positions": [
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Magicborn"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -3913,7 +4348,10 @@
         "positions": [
           "Mid"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Aspect"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
@@ -3936,7 +4374,10 @@
         "positions": [
           "Support"
         ],
-        "species": [],
+        "species": [
+          "Human",
+          "Plant"
+        ],
         "resource": "Mana",
         "rangeType": "Ranged",
         "regions": [
