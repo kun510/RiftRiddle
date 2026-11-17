@@ -11,7 +11,7 @@ const io = new Server(httpServer);
 const rooms = new Map();
 const alphabet = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
 const timerDurations = new Set([0, 15, 30, 45, 60, 90, 120]);
-const gameModes = new Set(['classic', 'emoji', 'splash', 'quote', 'ability']);
+const gameModes = new Set(['classic', 'random', 'emoji', 'splash', 'quote', 'ability']);
 let champions = [];
 let championById = new Map();
 let championMetadataById = new Map();
@@ -58,6 +58,16 @@ function publicState(room, selfId) {
 
   if (room.phase === 'playing') {
     state.modeHint = room.gameMode === 'classic' ? null : room.sharedModeHint;
+    if (room.gameMode !== 'classic') {
+      const wrongGuessCount = room.log.filter((entry) => entry.championId && !entry.isCorrect).length;
+      state.revealedSkillHints = room.revealedSkillHints;
+      if (room.gameMode === 'ability') state.abilityColorRevealed = room.abilityColorRevealed;
+      state.wrongGuessCount = wrongGuessCount;
+      state.nextHintAt = room.hintNextAt;
+      state.hintAvailable = wrongGuessCount >= room.hintNextAt && (room.gameMode === 'ability'
+        ? !room.abilityColorRevealed
+        : room.revealedSkillHints.length < 4);
+    }
   }
   if (room.phase === 'finished') {
     state.revealedTargets = room.gameMode === 'classic'
@@ -91,6 +101,11 @@ function clearRoomExpiry(room) {
 function resetMatch(room) {
   clearTurnTimer(room);
   room.phase = 'lobby';
+  room.pendingHintId = null;
+  room.revealedSkillHints = [];
+  room.abilityColorRevealed = false;
+  room.hintNextAt = room.gameMode === 'ability' ? 6 : 7;
+  room.pendingGuessId = null;
   room.turnPlayerId = null;
   room.winnerId = null;
   room.log = [];
@@ -101,6 +116,29 @@ function resetMatch(room) {
     player.ready = false;
     player.targetId = null;
   }
+}
+
+function removePlayerFromRoom(socket) {
+  const roomCode = socket.data.roomCode;
+  const room = rooms.get(roomCode);
+  socket.data.roomCode = null;
+  if (!room) return;
+
+  room.players.delete(socket.id);
+  socket.leave(room.code);
+  if (room.players.size === 0) {
+    clearRoomExpiry(room);
+    rooms.delete(roomCode);
+    return;
+  }
+
+  clearRoomExpiry(room);
+  resetMatch(room);
+  broadcastState(room);
+  room.expiryTimer = setTimeout(() => {
+    if (room.players.size < 2) rooms.delete(roomCode);
+  }, 30 * 60 * 1000);
+  room.expiryTimer.unref?.();
 }
 
 function sendError(ack, message) {
@@ -119,6 +157,7 @@ function clearTurnTimer(room) {
 
 function startTurn(room, playerId) {
   clearTurnTimer(room);
+  room.pendingGuessId = null;
   room.turnPlayerId = playerId;
   if (!room.timerSeconds) return;
 
@@ -222,7 +261,7 @@ async function getAbilityModeHint(champion) {
 }
 
 async function getModeHint(championId, gameMode) {
-  if (gameMode === 'classic') return null;
+  if (gameMode === 'classic' || gameMode === 'random') return null;
   const champion = championById.get(championId);
   const metadata = championMetadataById.get(championId);
   if (!champion || !metadata) throw new Error('Không tìm thấy dữ liệu cho vị tướng này.');
@@ -265,7 +304,9 @@ async function getModeHint(championId, gameMode) {
   if (gameMode === 'splash') {
     return {
       kind: 'splash',
-      imageUrl: `https://ddragon.leagueoflegends.com/cdn/${encodeURIComponent(dataDragonVersion)}/img/champion/splash/${encodeURIComponent(champion.id)}_0.jpg`,
+      imageUrl: `https://ddragon.leagueoflegends.com/cdn/img/champion/splash/${encodeURIComponent(champion.id)}_0.jpg`,
+      cropX: randomInt(20, 81),
+      cropY: randomInt(20, 81),
     };
   }
 
@@ -284,7 +325,8 @@ async function getModeHint(championId, gameMode) {
   }
 
   if (gameMode === 'ability') {
-    return { kind: 'ability', abilities: await getAbilityModeHint(champion) };
+    const abilities = await getAbilityModeHint(champion);
+    return { kind: 'ability', abilities: [abilities[randomInt(abilities.length)]] };
   }
 
   throw new Error('Chế độ chơi không hợp lệ.');
@@ -305,6 +347,11 @@ io.on('connection', (socket) => {
       gameMode,
       sharedTargetId: null,
       sharedModeHint: null,
+      revealedSkillHints: [],
+      abilityColorRevealed: false,
+      hintNextAt: 7,
+      pendingHintId: null,
+      pendingGuessId: null,
       starting: false,
       timerSeconds,
       turnExpiresAt: null,
@@ -364,21 +411,12 @@ io.on('connection', (socket) => {
     io.to(room.code).emit('room:chat-message', message);
   });
 
-  socket.on('room:choose', async ({ championId } = {}, ack) => {
+  socket.on('room:choose', ({ championId } = {}, ack) => {
     const room = rooms.get(socket.data.roomCode);
     const player = room?.players.get(socket.id);
     if (!room || !player || room.phase !== 'lobby') return sendError(ack, 'Phòng không ở trạng thái chọn tướng.');
     if (room.gameMode !== 'classic') return sendError(ack, 'Mode này dùng một tướng ngẫu nhiên chung, không cần chọn tướng bí mật.');
     if (!championById.has(championId)) return sendError(ack, 'Không tìm thấy vị tướng này.');
-    try {
-      await getChampionDetails(championId);
-    } catch (error) {
-      console.error(`Không tải được dữ liệu tướng ${championId}:`, error);
-      return sendError(ack, 'Không tải được dữ liệu tướng. Hãy thử chọn lại sau ít phút.');
-    }
-    if (rooms.get(room.code) !== room || room.players.get(socket.id) !== player || room.phase !== 'lobby') {
-      return sendError(ack, 'Trạng thái phòng đã thay đổi. Hãy thử lại.');
-    }
     player.targetId = championId;
     player.ready = false;
     ack?.({ ok: true });
@@ -417,6 +455,12 @@ io.on('connection', (socket) => {
         }
         room.sharedTargetId = sharedTarget.id;
         room.sharedModeHint = sharedModeHint;
+        room.revealedSkillHints = sharedModeHint?.kind === 'ability'
+          ? [...sharedModeHint.abilities]
+          : [];
+        room.abilityColorRevealed = false;
+        room.hintNextAt = room.gameMode === 'ability' ? 6 : 7;
+        room.pendingHintId = null;
         room.starting = false;
       }
 
@@ -430,19 +474,76 @@ io.on('connection', (socket) => {
     broadcastState(room);
   });
 
+  socket.on('room:hint', async (_payload, ack) => {
+    const room = rooms.get(socket.data.roomCode);
+    if (!room || room.phase !== 'playing') return sendError(ack, 'Ván chơi chưa bắt đầu.');
+    if (room.gameMode === 'classic') return sendError(ack, 'Mode Cổ điển không có gợi ý kỹ năng.');
+    if (room.pendingGuessId) return sendError(ack, 'Đang xử lý lượt đoán. Hãy chờ một chút.');
+    if (room.pendingHintId) return sendError(ack, 'Đang tải gợi ý. Hãy chờ một chút.');
+
+    const wrongGuessCount = room.log.filter((entry) => entry.championId && !entry.isCorrect).length;
+    if (wrongGuessCount < room.hintNextAt) {
+      return sendError(ack, `Cần thêm ${room.hintNextAt - wrongGuessCount} lượt đoán sai để mở gợi ý.`);
+    }
+    if (room.gameMode === 'ability') {
+      if (room.abilityColorRevealed) return sendError(ack, 'Màu kỹ năng đã được mở.');
+      room.abilityColorRevealed = true;
+      ack?.({ ok: true });
+      broadcastState(room);
+      return;
+    }
+    if (room.revealedSkillHints.length >= 4) return sendError(ack, 'Đã mở đủ bốn kỹ năng.');
+
+    const champion = championById.get(room.sharedTargetId);
+    if (!champion) return sendError(ack, 'Không tìm thấy đáp án của ván đấu.');
+
+    const hintRequestId = randomUUID();
+    room.pendingHintId = hintRequestId;
+    let abilities;
+    try {
+      abilities = await getAbilityModeHint(champion);
+    } catch (error) {
+      console.error(`Không tải được gợi ý kỹ năng trong phòng ${room.code}:`, error);
+      if (room.pendingHintId === hintRequestId) room.pendingHintId = null;
+      return sendError(ack, 'Không tải được kỹ năng. Hãy thử lại sau ít phút.');
+    }
+
+    if (rooms.get(room.code) !== room || room.phase !== 'playing' || room.pendingHintId !== hintRequestId) {
+      if (room.pendingHintId === hintRequestId) room.pendingHintId = null;
+      return sendError(ack, 'Ván chơi đã thay đổi. Hãy thử lại.');
+    }
+
+    const nextAbility = abilities[room.revealedSkillHints.length];
+    if (!nextAbility) {
+      room.pendingHintId = null;
+      return sendError(ack, 'Không còn kỹ năng nào để gợi ý.');
+    }
+    room.revealedSkillHints.push(nextAbility);
+    room.hintNextAt = room.log.filter((entry) => entry.championId && !entry.isCorrect).length + 6;
+    room.pendingHintId = null;
+    ack?.({ ok: true });
+    broadcastState(room);
+  });
+
   socket.on('room:guess', async ({ championId } = {}, ack) => {
     const room = rooms.get(socket.data.roomCode);
     if (!room || room.phase !== 'playing') return sendError(ack, 'Ván chơi chưa bắt đầu.');
     if (room.turnPlayerId !== socket.id) return sendError(ack, 'Chưa đến lượt của bạn.');
+    if (room.pendingGuessId) return sendError(ack, 'Đang xử lý lượt đoán. Hãy chờ một chút.');
     if (!championById.has(championId)) return sendError(ack, 'Không tìm thấy vị tướng này.');
+    if (room.log.some((entry) => entry.championId === championId)) {
+      return sendError(ack, 'Vị tướng này đã được đoán trong ván đấu.');
+    }
 
     const opponent = [...room.players.entries()].find(([id]) => id !== socket.id);
     if (!opponent) return sendError(ack, 'Không tìm thấy đối thủ trong phòng.');
     const [opponentId, opponentPlayer] = opponent;
     const targetId = room.gameMode === 'classic' ? opponentPlayer.targetId : room.sharedTargetId;
     if (!targetId) return sendError(ack, 'Chưa có đáp án cho ván đấu này.');
+    const guessRequestId = randomUUID();
+    room.pendingGuessId = guessRequestId;
     let clues = [];
-    if (room.gameMode === 'classic') {
+    if (room.gameMode === 'classic' || room.gameMode === 'random') {
       let guess;
       let target;
       try {
@@ -452,14 +553,18 @@ io.on('connection', (socket) => {
         ]);
       } catch (error) {
         console.error(`Không tải được dữ liệu lượt đoán trong phòng ${room.code}:`, error);
+        if (room.pendingGuessId === guessRequestId) room.pendingGuessId = null;
         return sendError(ack, 'Không tải được dữ liệu tướng. Hãy thử lại sau ít phút.');
       }
       clues = buildClues(guess, target);
     }
-    if (rooms.get(room.code) !== room || room.phase !== 'playing' || room.turnPlayerId !== socket.id) {
+    if (rooms.get(room.code) !== room || room.phase !== 'playing' || room.turnPlayerId !== socket.id
+      || room.pendingGuessId !== guessRequestId) {
+      if (room.pendingGuessId === guessRequestId) room.pendingGuessId = null;
       return sendError(ack, 'Lượt chơi đã thay đổi. Hãy kiểm tra lại lượt của bạn.');
     }
 
+    room.pendingGuessId = null;
     const isCorrect = championId === targetId;
     const player = room.players.get(socket.id);
     room.log.push({
@@ -492,25 +597,15 @@ io.on('connection', (socket) => {
     broadcastState(room);
   });
 
+  socket.on('room:leave', (_payload, ack) => {
+    const room = rooms.get(socket.data.roomCode);
+    if (!room?.players.has(socket.id)) return sendError(ack, 'Bạn không ở trong phòng này.');
+    removePlayerFromRoom(socket);
+    ack?.({ ok: true });
+  });
+
   socket.on('disconnect', () => {
-    const roomCode = socket.data.roomCode;
-    const room = rooms.get(roomCode);
-    if (!room) return;
-
-    room.players.delete(socket.id);
-    socket.data.roomCode = null;
-    if (room.players.size === 0) {
-      clearRoomExpiry(room);
-      rooms.delete(roomCode);
-      return;
-    }
-
-    resetMatch(room);
-    broadcastState(room);
-    room.expiryTimer = setTimeout(() => {
-      if (room.players.size < 2) rooms.delete(roomCode);
-    }, 30 * 60 * 1000);
-    room.expiryTimer.unref?.();
+    removePlayerFromRoom(socket);
   });
 });
 

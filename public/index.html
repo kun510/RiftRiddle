@@ -3,17 +3,14 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#10151b">
-    <title>KunDev510 — Đấu trí tướng</title>
+    <meta name="theme-color" content="#212121">
+    <title>Đấu trí tướng</title>
     <link rel="stylesheet" href="/styles.css">
   </head>
   <body>
     <main class="shell">
       <header class="topbar">
-        <a class="brand" href="/" aria-label="KunDev510">
-          <span class="brand-mark" aria-hidden="true">K</span>
-          <span>KunDev<b>510</b></span>
-        </a>
+        <span class="app-name">Đấu trí tướng</span>
         <span class="topbar-note"><span class="status-dot"></span> ĐẤU TRÍ 1 : 1</span>
       </header>
 
@@ -36,12 +33,13 @@
               <label class="field-label" for="game-mode">CHẾ ĐỘ CHƠI</label>
               <select id="game-mode" class="text-input game-mode-select">
                 <option value="classic">Cổ điển · So sánh thuộc tính</option>
+                <option value="random">Ngẫu nhiên · Đoán tướng</option>
                 <option value="emoji">Emoji · Đoán qua biểu tượng</option>
                 <option value="splash">Splash · Đoán qua splash art</option>
                 <option value="quote">Câu gợi ý · Gợi ý tự tạo</option>
                 <option value="ability">Kỹ năng · Đoán qua icon Q/W/E/R</option>
               </select>
-              <small class="mode-setting-note">Cổ điển: mỗi người chọn một tướng riêng. Mode khác: máy chọn ngẫu nhiên một đáp án chung.</small>
+              <small class="mode-setting-note">Cổ điển: mỗi người chọn một tướng riêng. Ngẫu nhiên: máy chọn một đáp án chung, cả hai dùng manh mối thuộc tính để đoán.</small>
             </div>
             <div class="timer-setting">
               <div class="timer-setting-copy">
@@ -78,13 +76,13 @@
             </div>
             <ol class="rules-list">
               <li><span>01</span><p>Tạo phòng, gửi mã cho một người bạn.</p></li>
-              <li><span>02</span><p>Mỗi người bí mật chọn một tướng rồi cùng sẵn sàng.</p></li>
+              <li><span>02</span><p>Chọn mode: tự chọn tướng bí mật hoặc để máy chọn ngẫu nhiên.</p></li>
               <li><span>03</span><p>Luân phiên đoán; manh mối chỉ ra thuộc tính đúng hoặc hướng cao/thấp.</p></li>
             </ol>
             <div class="rules-foot"><span class="status-dot"></span> Phòng riêng tối đa 2 người</div>
           </aside>
         </div>
-        <footer class="page-footer"><span>KunDev510</span><span>DỮ LIỆU TƯỚNG TỪ RIOT DATA DRAGON &amp; UNIVERSE</span></footer>
+        <footer class="page-footer"><span>DỮ LIỆU TƯỚNG TỪ RIOT DATA DRAGON &amp; UNIVERSE</span></footer>
       </section>
 
       <section id="room-screen" class="screen room-screen hidden" aria-live="polite"></section>

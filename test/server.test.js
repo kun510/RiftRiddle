@@ -124,6 +124,7 @@ test('two players can create a room, alternate guesses, and finish a round', { t
   const started = await waitForState(first, (state) => state.phase === 'playing');
   assert.equal(started.log.length, 0);
   assert.ok(started.turnExpiresAt > Date.now());
+  await assert.rejects(emitAck(first, 'room:hint', {}), /Mode Cổ điển không có gợi ý/);
 
   const firstTurnPlayerId = started.turnPlayerId;
   const firstTurnClient = firstTurnPlayerId === first.id ? first : second;
@@ -137,6 +138,7 @@ test('two players can create a room, alternate guesses, and finish a round', { t
   const wrongResult = await afterWrongGuess;
   assert.equal(wrongResult.log[1].isCorrect, false);
   assert.equal(wrongResult.turnPlayerId, firstTurnClient.id);
+  await assert.rejects(emitAck(firstTurnClient, 'room:guess', { championId: wrongGuess.id }), /đã được đoán trong ván đấu/);
 
   const targetForOther = firstTurnClient === first ? ashe : annie;
   const afterWin = waitForState(first, (state) => state.phase === 'finished');
@@ -160,10 +162,64 @@ test('two players can create a room, alternate guesses, and finish a round', { t
   assert.ok(emojiStarted.modeHint.emojis.length);
   assert.equal(emojiStarted.players.find((player) => player.isSelf).ownChampion, null);
 
+  const randomHost = await connectClient(url);
+  const randomGuest = await connectClient(url);
+  clients.push(randomHost, randomGuest);
+  const randomRoom = await emitAck(randomHost, 'room:create', { name: 'Random A', gameMode: 'random' });
+  await emitAck(randomGuest, 'room:join', { name: 'Random B', code: randomRoom.room.code });
+  await emitAck(randomHost, 'room:ready', {});
+  await emitAck(randomGuest, 'room:ready', {});
+  const randomStarted = await waitForState(randomHost, (state) => state.phase === 'playing');
+  assert.equal(randomStarted.gameMode, 'random');
+  assert.equal(randomStarted.modeHint, null);
+  assert.ok(randomStarted.players.every((player) => player.ownChampion === null));
+  assert.equal(randomStarted.hintAvailable, false);
+  assert.deepEqual(randomStarted.revealedSkillHints, []);
+  await assert.rejects(emitAck(randomHost, 'room:hint', {}), /Cần thêm 7 lượt đoán sai/);
+
+  const randomTurnClient = randomStarted.turnPlayerId === randomHost.id ? randomHost : randomGuest;
+  const randomGuessResult = waitForState(randomHost, (state) => state.log.length === 1);
+  await emitAck(randomTurnClient, 'room:guess', { championId: annie.id });
+  const randomGuessed = await randomGuessResult;
+  assert.equal(randomGuessed.log[0].championName, 'Annie');
+  assert.equal(randomGuessed.log[0].clues.length, 7);
+
   for (const gameMode of ['splash', 'quote', 'ability']) {
     const modeClient = await connectClient(url);
     clients.push(modeClient);
     const modeRoom = await emitAck(modeClient, 'room:create', { name: `${gameMode} host`, gameMode });
     assert.equal(modeRoom.room.gameMode, gameMode);
+    if (gameMode === 'splash') {
+      const modeGuest = await connectClient(url);
+      clients.push(modeGuest);
+      await emitAck(modeGuest, 'room:join', { name: 'Splash guest', code: modeRoom.room.code });
+      await emitAck(modeClient, 'room:ready', {});
+      const splashStartedPromise = waitForState(modeClient, (state) => state.phase === 'playing');
+      await emitAck(modeGuest, 'room:ready', {});
+      const splashStarted = await splashStartedPromise;
+      assert.equal(splashStarted.modeHint.kind, 'splash');
+      assert.match(splashStarted.modeHint.imageUrl, /\/cdn\/img\/champion\/splash\/.+_0\.jpg$/);
+      assert.ok(splashStarted.modeHint.cropX >= 20 && splashStarted.modeHint.cropX <= 80);
+      assert.ok(splashStarted.modeHint.cropY >= 20 && splashStarted.modeHint.cropY <= 80);
+    }
   }
+
+  const leaveHost = await connectClient(url);
+  const leaveGuest = await connectClient(url);
+  clients.push(leaveHost, leaveGuest);
+  const leaveRoom = await emitAck(leaveHost, 'room:create', { name: 'Leave host' });
+  await emitAck(leaveGuest, 'room:join', { name: 'Leave guest', code: leaveRoom.room.code });
+  const waitingAfterLeave = waitForState(leaveHost, (state) => state.players.length === 1);
+  await emitAck(leaveGuest, 'room:leave', {});
+  const waitingRoom = await waitingAfterLeave;
+  assert.equal(waitingRoom.phase, 'lobby');
+  assert.equal(waitingRoom.players.length, 1);
+
+  const rejoiningClient = await connectClient(url);
+  clients.push(rejoiningClient);
+  const rejoinedRoom = await emitAck(rejoiningClient, 'room:join', {
+    name: 'Rejoined player',
+    code: leaveRoom.room.code,
+  });
+  assert.equal(rejoinedRoom.room.players.length, 2);
 });
